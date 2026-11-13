@@ -90,6 +90,26 @@ test("collapsible sections: chevron state, folded by default, unfolded back by a
   assert.match(html(), /data-section="upcoming" aria-expanded="false"/);
 });
 
+test("no rewrite under a press: the pending update is drawn on release, a click renders at once", async () => {
+  const { card, html, wc } = newCard({ collapsed: ["upcoming"] });
+  card.connectedCallback();
+  click(card, { action: "toggle_section", section: "upcoming" });
+  const open = html();
+  card.shadowRoot.listeners.pointerdown({});
+  tapDoc(wc, { composedPath: () => [{ tagName: "DIV" }] });
+  assert.equal(html(), open, "no rewrite under the pointer");
+  card._onPressEnd();
+  await new Promise((r) => setTimeout(r, 10));
+  assert.notEqual(html(), open, "drawn once released");
+  // A click during a press renders at once.
+  card.shadowRoot.listeners.pointerdown({});
+  const before = html();
+  click(card, { action: "toggle_section", section: "upcoming" });
+  assert.notEqual(html(), before);
+  assert.equal(card._pressing, false);
+  card.disconnectedCallback();
+});
+
 test("folding: a press in the card released outside does not fold, a keyboard click does, leaving the page folds", () => {
   const { card, html, wc } = newCard({ collapsed: ["upcoming"] });
   card.connectedCallback();
