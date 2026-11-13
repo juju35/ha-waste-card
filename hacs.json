@@ -1,0 +1,7 @@
+{
+  "name": "Waste Card",
+  "render_readme": true,
+  "content_in_root": false,
+  "filename": "waste-card.js",
+  "homeassistant": "2024.8.0"
+}
