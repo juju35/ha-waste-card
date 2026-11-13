@@ -167,13 +167,13 @@ language: en
 | `show_subtitle` | both | `true` | Show the subtitle (next collection day) under the title |
 | `tonight_from` | both | `0` | Hour (0–23) from which a collection due tomorrow is highlighted as **Put out tonight**; `0`: the whole day before |
 | `type_names` | both | `source` | Name of each collection type: `source` (as the source gives it, e.g. `Restmüll`) or `category` (the translated waste category, e.g. *Household waste*) |
-| `types` | both | — | Settings per collection type, as a list: `match` (text contained in the type, or `/regex/`; defaults to `name`), `name`, `category`, `icon` (`mdi:…`) and `color` (any CSS color). The first matching entry wins |
+| `types` | both | — | Settings per collection type, as a list: `match` (text contained in the type, or `/regex/`; defaults to `name`), `name`, `category`, `icon` (`mdi:…`) and `color` (any CSS color). The first matching entry wins. YAML only (the visual editor keeps it) |
 | `days` | both | `60` | Days of calendar events read ahead |
-| `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button |
-| `show_bins` | full | `true` | Next collection per bin type |
-| `show_upcoming` | full | `true` | List of the next collection days |
-| `max_items` | full | `6` | Collection days in the list |
-| `collapsed` | full | `[]` | Sections folded by default, among `bins` and `upcoming`. Click a section title (or Tab to it and press Enter or Space) to fold or unfold it; a click anywhere else folds it back |
+| `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button. The full card's options (`show_bins`, `show_upcoming`, `max_items`, `collapsed`) set the detailed view, and can be set on the mini card too, in YAML or in its visual editor |
+| `show_bins` | both | `true` | Next collection per bin type |
+| `show_upcoming` | both | `true` | List of the next collection days |
+| `max_items` | both | `6` | Collection days in the list |
+| `collapsed` | both | `[]` | Sections folded by default, among `bins` and `upcoming`. Click a section title (or Tab to it and press Enter or Space) to fold or unfold it; a click anywhere else folds it back |
 | `language` | both | Auto | Force language: `fr`, `en`, `de`, `es`, `sr`, `sr-Latn`, `it`, `nl`, `pt`, `pl`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings) |
 
 ### Waste categories

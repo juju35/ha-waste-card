@@ -2145,13 +2145,10 @@ class WasteCardEditor extends WasteEditorBase {
   }
 }
 
-class WasteMiniCardEditor extends WasteEditorBase {
+// The detailed view of the mini card is the full card: its editor offers the full card's options too.
+class WasteMiniCardEditor extends WasteCardEditor {
   static get toggles() {
-    return [...WasteEditorBase.toggles, ["zoom", true]];
-  }
-
-  static extraFields() {
-    return [{ name: "days", selector: { number: { min: 1, max: 400, mode: "box", unit_of_measurement: "d" } } }];
+    return [...WasteCardEditor.toggles, ["zoom", true]];
   }
 }
 

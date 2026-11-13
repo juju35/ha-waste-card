@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 - 2026-11-14
+
+### Fixes
+- Mini card visual editor: the options of the full card shown in its detailed view (`show_bins`, `show_upcoming`, `max_items`, `collapsed`) can now be set there too.
+- README: `types` is marked YAML only (the visual editor keeps it).
+
 ## 1.0.1 - 2026-11-13
 
 ### Fixes

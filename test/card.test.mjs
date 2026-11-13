@@ -298,7 +298,9 @@ test("editors: labels, schema, defaults left out of the YAML, entity settings ke
   mini.setConfig({});
   mini.hass = makeHass();
   wc.document.createElement = realCreate;
-  assert.match(JSON.stringify(mini.children[0].schema), /"zoom"/);
+  const miniNames = JSON.stringify(mini.children[0].schema);
+  // The detailed view is the full card: every option it reads is in the mini card's editor.
+  for (const n of ["zoom", "days", "max_items", "collapsed", "show_bins", "show_upcoming"]) assert.match(miniNames, new RegExp(`"${n}"`));
   assert.equal(mini.children[0].computeHelper({ name: "zoom" }), "Switches the mini card to the full card and back");
 });
 
