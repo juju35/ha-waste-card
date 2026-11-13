@@ -21,6 +21,13 @@ const click = (card, dataset, detail = 1) => {
   card._onClick({ composedPath: () => [el], stopPropagation() {}, detail });
 };
 
+
+// A tap elsewhere on the page: the press and the release (iOS sends no click for a tap on something not clickable).
+const tapDoc = (wc, ev) => {
+  wc.fireDocument("pointerdown", ev);
+  wc.fireDocument("pointerup", ev);
+};
+
 test("the next collection, with its bins to put out tonight", () => {
   const { html } = newCard();
   const h = html();
@@ -77,9 +84,49 @@ test("collapsible sections: chevron state, folded by default, unfolded back by a
   click(card, { action: "toggle_section", section: "upcoming" });
   assert.match(html(), /data-section="upcoming" aria-expanded="true"/);
   // A click in a more-info dialog leaves it, a click elsewhere folds it back.
-  wc.fireDocument("click", { composedPath: () => [{ tagName: "HA-MORE-INFO-DIALOG" }] });
+  tapDoc(wc, { composedPath: () => [{ tagName: "HA-MORE-INFO-DIALOG" }] });
   assert.match(html(), /data-section="upcoming" aria-expanded="true"/);
-  wc.fireDocument("click", { composedPath: () => [{ tagName: "DIV" }] });
+  tapDoc(wc, { composedPath: () => [{ tagName: "DIV" }] });
+  assert.match(html(), /data-section="upcoming" aria-expanded="false"/);
+});
+
+test("no rewrite under a press: the pending update is drawn on release, a click renders at once", async () => {
+  const { card, html, wc } = newCard({ collapsed: ["upcoming"] });
+  card.connectedCallback();
+  click(card, { action: "toggle_section", section: "upcoming" });
+  const open = html();
+  card.shadowRoot.listeners.pointerdown({});
+  tapDoc(wc, { composedPath: () => [{ tagName: "DIV" }] });
+  assert.equal(html(), open, "no rewrite under the pointer");
+  card._onPressEnd();
+  await new Promise((r) => setTimeout(r, 10));
+  assert.notEqual(html(), open, "drawn once released");
+  // A click during a press renders at once.
+  card.shadowRoot.listeners.pointerdown({});
+  const before = html();
+  click(card, { action: "toggle_section", section: "upcoming" });
+  assert.notEqual(html(), before);
+  assert.equal(card._pressing, false);
+  card.disconnectedCallback();
+});
+
+test("folding: a press in the card released outside does not fold, a keyboard click does, leaving the page folds", () => {
+  const { card, html, wc } = newCard({ collapsed: ["upcoming"] });
+  card.connectedCallback();
+  click(card, { action: "toggle_section", section: "upcoming" });
+  // A slider pressed in the card and released outside of it: nothing folds.
+  wc.fireDocument("pointerdown", { composedPath: () => [card] });
+  wc.fireDocument("pointerup", { composedPath: () => [{ tagName: "DIV" }] });
+  assert.match(html(), /data-section="upcoming" aria-expanded="true"/);
+  // A mouse click (detail 1) is the pointer's job; a keyboard click (detail 0) folds.
+  wc.fireDocument("click", { detail: 1, composedPath: () => [{ tagName: "DIV" }] });
+  assert.match(html(), /data-section="upcoming" aria-expanded="true"/);
+  wc.fireDocument("click", { detail: 0, composedPath: () => [{ tagName: "DIV" }] });
+  assert.match(html(), /data-section="upcoming" aria-expanded="false"/);
+  // Left with the section open and back: folded.
+  click(card, { action: "toggle_section", section: "upcoming" });
+  card.disconnectedCallback();
+  card.connectedCallback();
   assert.match(html(), /data-section="upcoming" aria-expanded="false"/);
 });
 
@@ -100,7 +147,7 @@ test("the mini card shows the next collection, its detail button switches to the
   click(card, { action: "zoom" });
   assert.match(html(), /class="tile/);
   assert.match(html(), /title="Show less"/);
-  wc.fireDocument("click", { composedPath: () => [{ tagName: "DIV" }] });
+  tapDoc(wc, { composedPath: () => [{ tagName: "DIV" }] });
   assert.doesNotMatch(html(), /class="tile/);
   const { html: noZoom } = newCard({ zoom: false }, { Card: "WasteMiniCard" });
   assert.doesNotMatch(noZoom(), /class="zoom"/);

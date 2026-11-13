@@ -78,6 +78,9 @@ export const load = (now = NOW) => {
     clearTimeout,
     setInterval: () => 0,
     clearInterval() {},
+    // window-level listeners (the release of a press on the card)
+    addEventListener() {},
+    removeEventListener() {},
   };
   sandbox.window = sandbox;
   sandbox.fireDocument = (type, ev) => {
