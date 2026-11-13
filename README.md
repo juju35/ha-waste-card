@@ -8,6 +8,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/juju35/ha-waste-card/blob/main/LICENSE)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/julienstep9)
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/images/waste_collection_schedule.png" alt="Waste Collection Schedule" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/images/google.png" alt="Google Calendar" width="64">&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/images/caldav.png" alt="CalDAV" width="64">
+</p>
+
 Lovelace cards for Home Assistant showing your **waste collections**: the next collection of every bin (household waste, recycling, paper, glass, organic, garden, bulky waste…) with a countdown — *today*, *tomorrow*, *in 5 days* —, the bins to **put out tonight** highlighted, and the list of the next collection days.
 
 The cards read the sensors of [Waste Collection Schedule](https://github.com/mampfes/hacs_waste_collection_schedule), the events of any **calendar** entity and any **sensor whose state is a date**. Each collection type is recognized in many languages (`Restmüll`, `Ordures ménagères`, `Gelber Sack`, `GFT`…) and gets the color and the icon of its waste category; both can be changed per type.
@@ -41,8 +47,8 @@ The cards read the sensors of [Waste Collection Schedule](https://github.com/mam
 
 | Source | Entities | What the cards read |
 |---|---|---|
-| [Waste Collection Schedule](https://github.com/mampfes/hacs_waste_collection_schedule) (custom) | `sensor` and `calendar` entities of the integration — found automatically when `entities` is not set | Sensors: every `details_format` — `upcoming` (one attribute per date), `appointment_types` (one attribute per type), `generic` (`upcoming` list) — and, with `hidden`, the state (`Paper, Glass in 2 days`, or your `value_template` with `add_days_to`). Calendars: their events |
-| Any calendar integration — [Local Calendar](https://www.home-assistant.io/integrations/local_calendar/), [Google Calendar](https://www.home-assistant.io/integrations/google/), [CalDAV](https://www.home-assistant.io/integrations/caldav/), [Remote Calendar](https://www.home-assistant.io/integrations/remote_calendar/) (an ICS feed of your municipality)… | `calendar` entities | The events of the next `days` (60 by default), through the calendar REST API or, when it is not available, the `calendar.get_events` action; the summary is the collection type (`Paper, Glass` gives two collections; the calendars of Waste Collection Schedule hold one type per event and are not split) |
+| <img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/images/waste_collection_schedule.png" alt="" width="16"> [Waste Collection Schedule](https://github.com/mampfes/hacs_waste_collection_schedule) (custom) | `sensor` and `calendar` entities of the integration — found automatically when `entities` is not set | Sensors: every `details_format` — `upcoming` (one attribute per date), `appointment_types` (one attribute per type), `generic` (`upcoming` list) — and, with `hidden`, the state (`Paper, Glass in 2 days`, or your `value_template` with `add_days_to`). Calendars: their events |
+| Any calendar integration — [Local Calendar](https://www.home-assistant.io/integrations/local_calendar/), <img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/images/google.png" alt="" width="16"> [Google Calendar](https://www.home-assistant.io/integrations/google/), <img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/images/caldav.png" alt="" width="16"> [CalDAV](https://www.home-assistant.io/integrations/caldav/), [Remote Calendar](https://www.home-assistant.io/integrations/remote_calendar/) (an ICS feed of your municipality)… | `calendar` entities | The events of the next `days` (60 by default), through the calendar REST API or, when it is not available, the `calendar.get_events` action; the summary is the collection type (`Paper, Glass` gives two collections; the calendars of Waste Collection Schedule hold one type per event and are not split) |
 | Any sensor whose state is a date — a [template sensor](https://www.home-assistant.io/integrations/template/), another waste integration… | `sensor` entities | A date (`2026-11-14`, `14.11.2026`), a timestamp (`device_class: timestamp`), or a number of days (unit `d` / `days`, or a `daysTo` attribute). The collection type is the entity's name, or the `name` / `type` set on the entity |
 
 ## Prerequisites
