@@ -230,6 +230,10 @@ Own names, colors and icons per bin (`types`), the upcoming list folded (`collap
 |---|---|
 | <img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/screenshots/card-custom.png" alt="custom types" width="400"> | <img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/screenshots/card-custom-dark.png" alt="custom types dark" width="400"> |
 
+The four bin shapes (`bin_shape`: `wheelie`, `flat`, `can`, `cart`), each in the color of its waste category (`colors` recolours a whole category):
+
+<p align="center"><img src="https://raw.githubusercontent.com/juju35/ha-waste-card/main/images/bin-shapes.png" alt="bin shapes" width="760"></p>
+
 Narrow cards on a phone: the full card at 6 of 12 columns of a Sections view (238 px) — the tiles go two by two without their badge, the bins of each day under its date — and the mini card in a two-column grid (170 px):
 
 | Light | Dark |
