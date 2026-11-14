@@ -289,11 +289,18 @@ test("editors: labels, schema, defaults left out of the YAML, entity settings ke
   assert.deepEqual([...form.data.entities], SENSORS);
   assert.equal(form.computeLabel({ name: "title" }), "Title (optional)");
   const names = JSON.stringify(form.schema);
-  for (const n of ["entities", "type_names", "tonight_from", "max_items", "days", "collapsed", "show_bins", "show_upcoming", "language"]) assert.match(names, new RegExp(`"${n}"`));
+  for (const n of ["entities", "type_names", "bin_shape", "tonight_from", "max_items", "days", "collapsed", "colors", "show_bins", "show_upcoming", "language"]) assert.match(names, new RegExp(`"${n}"`));
   let out;
   ed.dispatchEvent = (ev) => (out = ev.detail.config);
   handlers[0]({ stopPropagation() {}, detail: { value: { ...form.data, entities: SENSORS, show_bins: true, tonight_from: 0, title: "" } } });
   assert.deepEqual(JSON.parse(JSON.stringify(out)), { entities: [{ entity: "sensor.waste_collection", name: "Bins" }, "sensor.bulky_waste"] });
+  // bin_shape kept; bin colors kept as hex, with a category left at its default dropped.
+  handlers[0]({
+    stopPropagation() {},
+    detail: { value: { ...form.data, entities: SENSORS, bin_shape: "cart", colors: { recycling: [21, 101, 192], garbage: [97, 97, 97] } } },
+  });
+  assert.equal(out.bin_shape, "cart");
+  assert.deepEqual(JSON.parse(JSON.stringify(out.colors)), { recycling: "#1565c0" });
   const mini = new wc.WasteMiniCardEditor();
   mini.setConfig({});
   mini.hass = makeHass();

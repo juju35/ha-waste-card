@@ -29,7 +29,8 @@ The cards read the sensors of [Waste Collection Schedule](https://github.com/mam
 ## Features
 
 - Two cards: a full **Waste Card** (`custom:waste-card`) and a compact **Waste Mini Card** (`custom:waste-mini-card`, next collection only)
-- Drawn wheelie bins of the next collection, in the color of their type with its icon on the front, **animated** by what is due: rolled to the kerb under the moon the evening before, lids lifting with pulsing rings on collection day (see [Animations](#animations))
+- Drawn bins of the next collection, in the color of their type with its icon on the front, **animated** by what is due: rolled to the kerb under the moon the evening before, lids lifting with pulsing rings on collection day (see [Animations](#animations)); four bin shapes (`bin_shape`: wheelie, flat-lid, cylindrical can, North-American cart)
+- Color per waste category (`colors`) and own color per type (`types`): the bin colors of your own town
 - Countdown worded in your language (*Today*, *Tomorrow*, *In 3 days*, *Übermorgen*…), and the date of the collection
 - **Put out tonight**: the day before a collection the card highlights the bins to take out, from the hour you choose (`tonight_from`); **Collection today** on the day itself
 - Next collection **per bin type**: one tile per type with its countdown and date, the ones due today or tomorrow outlined
@@ -96,7 +97,7 @@ The Marketplace adds the resource `/local/community/ha-waste-card/waste-card.js`
 
 ### Visual editor
 
-Edit a dashboard, click **Add card** and search for **Waste Card** or **Waste Mini Card**. The sensors and calendars of Waste Collection Schedule are preselected; pick other entities in the list, set an optional title, the hour of the evening highlight, the sections and the language. The preview updates live, and options left at their default are kept out of the generated YAML. Per-type names, colors and icons (`types`) and per-entity settings are set in YAML; the editor keeps them.
+Edit a dashboard, click **Add card** and search for **Waste Card** or **Waste Mini Card**. The sensors and calendars of Waste Collection Schedule are preselected; pick other entities in the list, set an optional title, the hour of the evening highlight, the **bin shape**, the **color of each waste category**, the sections and the language. The preview updates live, and options left at their default are kept out of the generated YAML. Per-type names, colors and icons (`types`) and per-entity settings are set in YAML; the editor keeps them.
 
 ### Minimal
 
@@ -135,6 +136,10 @@ types:
   - match: Glass
     category: glass
     icon: mdi:bottle-wine
+bin_shape: cart                      # wheelie (default), flat, can or cart
+colors:                              # recolour whole categories (your town's bin colors)
+  recycling: "#1565c0"
+  organic: "#4e7a27"
 tonight_from: 16
 show_title: true
 show_subtitle: true
@@ -168,6 +173,8 @@ language: en
 | `tonight_from` | both | `0` | Hour (0–23) from which a collection due tomorrow is highlighted as **Put out tonight**; `0`: the whole day before |
 | `type_names` | both | `source` | Name of each collection type: `source` (as the source gives it, e.g. `Restmüll`) or `category` (the translated waste category, e.g. *Household waste*) |
 | `types` | both | — | Settings per collection type, as a list: `match` (text contained in the type, or `/regex/`; defaults to `name`), `name`, `category`, `icon` (`mdi:…`) and `color` (any CSS color). The first matching entry wins. YAML only (the visual editor keeps it) |
+| `bin_shape` | both | `wheelie` | Silhouette of the drawn bins: `wheelie` (rolled-out wheelie bin), `flat` (flat-lid, two wheels), `can` (cylindrical can) or `cart` (North-American roll-out cart). Also in the visual editor |
+| `colors` | both | — | Color per waste category, overriding the defaults (bin colors differ from one town to another): a map of category key (see below) to any CSS color, e.g. `colors: {recycling: "#1565c0", organic: "#4e7a27"}`. A `types` entry or an entity `color` still wins over it. Also in the visual editor |
 | `days` | both | `60` | Days of calendar events read ahead |
 | `zoom` | mini | `true` | Detail button at the top right of the mini card: it shows the full card's content and switches back to the compact view; a click outside the card also brings the compact view back. `false` removes the button. The full card's options (`show_bins`, `show_upcoming`, `max_items`, `collapsed`) set the detailed view, and can be set on the mini card too, in YAML or in its visual editor |
 | `show_bins` | both | `true` | Next collection per bin type |
@@ -194,7 +201,7 @@ The category of a collection type gives its default icon and color. It is recogn
 | `electronics` | Electronics, WEEE, Elektroschrott, DEEE | `mdi:television-classic` | `#00897b` |
 | `other` | anything else | `mdi:trash-can-outline` | `#78909c` |
 
-Bin colors differ from one town to another: set yours with `types`.
+Bin colors differ from one town to another: recolour a whole category with `colors` (e.g. `colors: {recycling: "#1565c0"}`), or set a single type with `types`.
 
 ## Screenshots
 

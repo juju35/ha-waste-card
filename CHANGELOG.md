@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 - 2026-11-14
+
+### Features
+- Bin shape: `bin_shape` draws the bins as a rolled-out wheelie bin (default), a flat-lid bin, a cylindrical can or a North-American roll-out cart; also in the visual editor.
+- Bin colors per waste category: `colors` (a map of category key to a CSS color) recolours whole categories, for towns whose bin colors differ from the defaults; a `types` entry or an entity `color` still wins over it. The color of each category is also set in the visual editor.
+
 ## 1.0.2 - 2026-11-14
 
 ### Fixes

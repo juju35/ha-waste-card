@@ -143,6 +143,12 @@ const STRINGS = {
     type_names: "Bin names",
     type_names_source: "As given by the source",
     type_names_category: "Translated waste category",
+    bin_shape: "Bin shape",
+    bin_shape_wheelie: "Wheelie bin",
+    bin_shape_flat: "Flat-lid bin",
+    bin_shape_can: "Cylindrical can",
+    bin_shape_cart: "Roll-out cart",
+    colors: "Bin colors",
     collapsed: "Folded sections",
     zoom: "Detail button",
     zoom_helper: "Switches the mini card to the full card and back",
@@ -184,6 +190,12 @@ const STRINGS = {
     type_names: "Noms des bacs",
     type_names_source: "Tels que fournis par la source",
     type_names_category: "Catégorie de déchets traduite",
+    bin_shape: "Forme des bacs",
+    bin_shape_wheelie: "Bac roulant",
+    bin_shape_flat: "Bac à couvercle plat",
+    bin_shape_can: "Poubelle cylindrique",
+    bin_shape_cart: "Bac nord-américain",
+    colors: "Couleurs des bacs",
     collapsed: "Sections repliées",
     zoom: "Bouton détail",
     zoom_helper: "Bascule la mini-carte vers la carte complète et inversement",
@@ -225,6 +237,12 @@ const STRINGS = {
     type_names: "Namen der Tonnen",
     type_names_source: "Wie von der Quelle geliefert",
     type_names_category: "Übersetzte Abfallkategorie",
+    bin_shape: "Tonnenform",
+    bin_shape_wheelie: "Mülltonne",
+    bin_shape_flat: "Tonne mit flachem Deckel",
+    bin_shape_can: "Mülleimer (rund)",
+    bin_shape_cart: "Rolltonne (Nordamerika)",
+    colors: "Tonnenfarben",
     collapsed: "Eingeklappte Bereiche",
     zoom: "Detail-Schaltfläche",
     zoom_helper: "Schaltet die Mini-Karte auf die volle Karte um und zurück",
@@ -266,6 +284,12 @@ const STRINGS = {
     type_names: "Nombres de los contenedores",
     type_names_source: "Tal como los da la fuente",
     type_names_category: "Categoría de residuo traducida",
+    bin_shape: "Forma del contenedor",
+    bin_shape_wheelie: "Contenedor con ruedas",
+    bin_shape_flat: "Contenedor de tapa plana",
+    bin_shape_can: "Cubo cilíndrico",
+    bin_shape_cart: "Contenedor norteamericano",
+    colors: "Colores de los contenedores",
     collapsed: "Secciones plegadas",
     zoom: "Botón de detalle",
     zoom_helper: "Cambia la minitarjeta a la tarjeta completa y viceversa",
@@ -307,6 +331,12 @@ const STRINGS = {
     type_names: "Nomi dei bidoni",
     type_names_source: "Come forniti dalla fonte",
     type_names_category: "Categoria di rifiuto tradotta",
+    bin_shape: "Forma del bidone",
+    bin_shape_wheelie: "Bidone carrellato",
+    bin_shape_flat: "Bidone a coperchio piatto",
+    bin_shape_can: "Pattumiera cilindrica",
+    bin_shape_cart: "Bidone nordamericano",
+    colors: "Colori dei bidoni",
     collapsed: "Sezioni chiuse",
     zoom: "Pulsante dettagli",
     zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa",
@@ -348,6 +378,12 @@ const STRINGS = {
     type_names: "Namen van de containers",
     type_names_source: "Zoals de bron ze geeft",
     type_names_category: "Vertaalde afvalcategorie",
+    bin_shape: "Vorm van de container",
+    bin_shape_wheelie: "Rolcontainer",
+    bin_shape_flat: "Container met plat deksel",
+    bin_shape_can: "Cilindrische afvalbak",
+    bin_shape_cart: "Noord-Amerikaanse container",
+    colors: "Kleuren van de containers",
     collapsed: "Ingeklapte secties",
     zoom: "Detailknop",
     zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug",
@@ -389,6 +425,12 @@ const STRINGS = {
     type_names: "Nomes dos contentores",
     type_names_source: "Tal como dados pela fonte",
     type_names_category: "Categoria de resíduo traduzida",
+    bin_shape: "Forma do contentor",
+    bin_shape_wheelie: "Contentor com rodas",
+    bin_shape_flat: "Contentor de tampa plana",
+    bin_shape_can: "Caixote cilíndrico",
+    bin_shape_cart: "Contentor norte-americano",
+    colors: "Cores dos contentores",
     collapsed: "Secções recolhidas",
     zoom: "Botão de detalhe",
     zoom_helper: "Alterna o mini cartão para o cartão completo e vice-versa",
@@ -430,6 +472,12 @@ const STRINGS = {
     type_names: "Nazwy pojemników",
     type_names_source: "Tak jak podaje źródło",
     type_names_category: "Przetłumaczona kategoria odpadów",
+    bin_shape: "Kształt pojemnika",
+    bin_shape_wheelie: "Pojemnik na kółkach",
+    bin_shape_flat: "Pojemnik z płaską pokrywą",
+    bin_shape_can: "Kosz cylindryczny",
+    bin_shape_cart: "Pojemnik północnoamerykański",
+    colors: "Kolory pojemników",
     collapsed: "Zwinięte sekcje",
     zoom: "Przycisk szczegółów",
     zoom_helper: "Przełącza mini kartę na pełną kartę i z powrotem",
@@ -471,6 +519,12 @@ const STRINGS = {
     type_names: "Називи канти",
     type_names_source: "Како их даје извор",
     type_names_category: "Преведена категорија отпада",
+    bin_shape: "Облик канте",
+    bin_shape_wheelie: "Канта на точковима",
+    bin_shape_flat: "Канта са равним поклопцем",
+    bin_shape_can: "Цилиндрична канта",
+    bin_shape_cart: "Северноамеричка канта",
+    colors: "Боје канти",
     collapsed: "Скупљени одељци",
     zoom: "Дугме за детаље",
     zoom_helper: "Пребацује мини картицу на пуну картицу и назад",
@@ -512,6 +566,12 @@ const STRINGS = {
     type_names: "Nazivi kanti",
     type_names_source: "Kako ih daje izvor",
     type_names_category: "Prevedena kategorija otpada",
+    bin_shape: "Oblik kante",
+    bin_shape_wheelie: "Kanta na točkovima",
+    bin_shape_flat: "Kanta sa ravnim poklopcem",
+    bin_shape_can: "Cilindrična kanta",
+    bin_shape_cart: "Severnoamerička kanta",
+    colors: "Boje kanti",
     collapsed: "Skupljeni odeljci",
     zoom: "Dugme za detalje",
     zoom_helper: "Prebacuje mini karticu na punu karticu i nazad",
@@ -553,6 +613,12 @@ const STRINGS = {
     type_names: "Numele pubelelor",
     type_names_source: "Așa cum le dă sursa",
     type_names_category: "Categorie de deșeuri tradusă",
+    bin_shape: "Forma pubelei",
+    bin_shape_wheelie: "Pubelă cu roți",
+    bin_shape_flat: "Pubelă cu capac plat",
+    bin_shape_can: "Coș cilindric",
+    bin_shape_cart: "Pubelă nord-americană",
+    colors: "Culorile pubelelor",
     collapsed: "Secțiuni restrânse",
     zoom: "Buton de detalii",
     zoom_helper: "Comută mini cardul la cardul complet și înapoi",
@@ -594,6 +660,12 @@ const STRINGS = {
     type_names: "Navne på beholdere",
     type_names_source: "Som kilden angiver dem",
     type_names_category: "Oversat affaldskategori",
+    bin_shape: "Beholderens form",
+    bin_shape_wheelie: "Affaldsbeholder på hjul",
+    bin_shape_flat: "Beholder med fladt låg",
+    bin_shape_can: "Cylindrisk spand",
+    bin_shape_cart: "Nordamerikansk beholder",
+    colors: "Beholderfarver",
     collapsed: "Sammenfoldede sektioner",
     zoom: "Detaljeknap",
     zoom_helper: "Skifter minikortet til det fulde kort og tilbage",
@@ -635,6 +707,12 @@ const STRINGS = {
     type_names: "Namn på kärl",
     type_names_source: "Som källan anger dem",
     type_names_category: "Översatt avfallskategori",
+    bin_shape: "Kärlets form",
+    bin_shape_wheelie: "Soptunna på hjul",
+    bin_shape_flat: "Kärl med platt lock",
+    bin_shape_can: "Cylindrisk tunna",
+    bin_shape_cart: "Nordamerikanskt kärl",
+    colors: "Kärlfärger",
     collapsed: "Hopfällda avsnitt",
     zoom: "Detaljknapp",
     zoom_helper: "Växlar minikortet till hela kortet och tillbaka",
@@ -676,6 +754,12 @@ const STRINGS = {
     type_names: "Имена на контейнерите",
     type_names_source: "Както ги дава източникът",
     type_names_category: "Преведена категория отпадъци",
+    bin_shape: "Форма на контейнера",
+    bin_shape_wheelie: "Контейнер на колела",
+    bin_shape_flat: "Контейнер с плосък капак",
+    bin_shape_can: "Цилиндричен кош",
+    bin_shape_cart: "Северноамерикански контейнер",
+    colors: "Цветове на контейнерите",
     collapsed: "Свити раздели",
     zoom: "Бутон за подробности",
     zoom_helper: "Превключва мини картата към пълната карта и обратно",
@@ -717,6 +801,12 @@ const STRINGS = {
     type_names: "Названия контейнеров",
     type_names_source: "Как в источнике",
     type_names_category: "Переведённая категория отходов",
+    bin_shape: "Форма контейнера",
+    bin_shape_wheelie: "Контейнер на колёсах",
+    bin_shape_flat: "Контейнер с плоской крышкой",
+    bin_shape_can: "Цилиндрическое ведро",
+    bin_shape_cart: "Североамериканский контейнер",
+    colors: "Цвета контейнеров",
     collapsed: "Свёрнутые разделы",
     zoom: "Кнопка подробностей",
     zoom_helper: "Переключает мини-карточку на полную и обратно",
@@ -758,6 +848,12 @@ const STRINGS = {
     type_names: "Назви контейнерів",
     type_names_source: "Як у джерелі",
     type_names_category: "Перекладена категорія відходів",
+    bin_shape: "Форма контейнера",
+    bin_shape_wheelie: "Контейнер на колесах",
+    bin_shape_flat: "Контейнер із пласкою кришкою",
+    bin_shape_can: "Циліндричне відро",
+    bin_shape_cart: "Північноамериканський контейнер",
+    colors: "Кольори контейнерів",
     collapsed: "Згорнуті розділи",
     zoom: "Кнопка подробиць",
     zoom_helper: "Перемикає мінікартку на повну й назад",
@@ -799,6 +895,12 @@ const STRINGS = {
     type_names: "Kukák nevei",
     type_names_source: "Ahogy a forrás adja",
     type_names_category: "Lefordított hulladékkategória",
+    bin_shape: "Kuka formája",
+    bin_shape_wheelie: "Kerekes kuka",
+    bin_shape_flat: "Lapos fedelű kuka",
+    bin_shape_can: "Hengeres kuka",
+    bin_shape_cart: "Észak-amerikai kuka",
+    colors: "Kukák színei",
     collapsed: "Összecsukott szakaszok",
     zoom: "Részletek gomb",
     zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza",
@@ -840,6 +942,12 @@ const STRINGS = {
     type_names: "Názvy nádob",
     type_names_source: "Ako ich uvádza zdroj",
     type_names_category: "Preložená kategória odpadu",
+    bin_shape: "Tvar nádoby",
+    bin_shape_wheelie: "Nádoba na kolieskach",
+    bin_shape_flat: "Nádoba s plochým vekom",
+    bin_shape_can: "Valcový kôš",
+    bin_shape_cart: "Severoamerická nádoba",
+    colors: "Farby nádob",
     collapsed: "Zbalené sekcie",
     zoom: "Tlačidlo podrobností",
     zoom_helper: "Prepne mini kartu na celú kartu a späť",
@@ -881,6 +989,12 @@ const STRINGS = {
     type_names: "Názvy nádob",
     type_names_source: "Jak je uvádí zdroj",
     type_names_category: "Přeložená kategorie odpadu",
+    bin_shape: "Tvar nádoby",
+    bin_shape_wheelie: "Popelnice na kolečkách",
+    bin_shape_flat: "Nádoba s plochým víkem",
+    bin_shape_can: "Válcový koš",
+    bin_shape_cart: "Severoamerická nádoba",
+    colors: "Barvy nádob",
     collapsed: "Sbalené sekce",
     zoom: "Tlačítko podrobností",
     zoom_helper: "Přepne mini kartu na celou kartu a zpět",
@@ -922,6 +1036,12 @@ const STRINGS = {
     type_names: "Imena zabojnikov",
     type_names_source: "Kot jih poda vir",
     type_names_category: "Prevedena kategorija odpadkov",
+    bin_shape: "Oblika zabojnika",
+    bin_shape_wheelie: "Zabojnik na kolesih",
+    bin_shape_flat: "Zabojnik z ravnim pokrovom",
+    bin_shape_can: "Valjasti koš",
+    bin_shape_cart: "Severnoameriški zabojnik",
+    colors: "Barve zabojnikov",
     collapsed: "Strnjeni razdelki",
     zoom: "Gumb za podrobnosti",
     zoom_helper: "Preklopi mini kartico na celotno kartico in nazaj",
@@ -963,6 +1083,12 @@ const STRINGS = {
     type_names: "Konteineru nosaukumi",
     type_names_source: "Kā tos dod avots",
     type_names_category: "Tulkota atkritumu kategorija",
+    bin_shape: "Konteinera forma",
+    bin_shape_wheelie: "Konteiners ar riteņiem",
+    bin_shape_flat: "Konteiners ar plakanu vāku",
+    bin_shape_can: "Cilindrisks spainis",
+    bin_shape_cart: "Ziemeļamerikas konteiners",
+    colors: "Konteineru krāsas",
     collapsed: "Sakļautās sadaļas",
     zoom: "Detaļu poga",
     zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ",
@@ -1004,6 +1130,12 @@ const STRINGS = {
     type_names: "Ονόματα κάδων",
     type_names_source: "Όπως τα δίνει η πηγή",
     type_names_category: "Μεταφρασμένη κατηγορία αποβλήτων",
+    bin_shape: "Σχήμα κάδου",
+    bin_shape_wheelie: "Τροχήλατος κάδος",
+    bin_shape_flat: "Κάδος με επίπεδο καπάκι",
+    bin_shape_can: "Κυλινδρικός κάδος",
+    bin_shape_cart: "Βορειοαμερικανικός κάδος",
+    colors: "Χρώματα κάδων",
     collapsed: "Συμπτυγμένες ενότητες",
     zoom: "Κουμπί λεπτομερειών",
     zoom_helper: "Αλλάζει τη μίνι κάρτα στην πλήρη κάρτα και αντίστροφα",
@@ -1271,7 +1403,7 @@ const typeOf = (raw, conf, config, tr) => {
     name,
     category: cat.key,
     icon: rule?.icon || conf.icon || cat.icon,
-    color: safeColor(rule?.color) || safeColor(conf.color) || cat.color,
+    color: safeColor(rule?.color) || safeColor(conf.color) || safeColor(config.colors?.[cat.key]) || cat.color,
   };
 };
 
@@ -1305,31 +1437,61 @@ const SCENE_STYLE = `
   @media (prefers-reduced-motion: reduce) { .scene * { animation: none !important; } }
 `;
 
-// One wheelie bin (44 × 66 at x, y) in the color of its type, with the type's icon on its front.
-const binSvg = (type, x, y, i) => {
-  const c = type.color;
-  const dark = `color-mix(in srgb, ${c} 68%, #000)`;
-  const glyph = ICONS[iconName(type.icon)] || ICONS[categoryByKey(type.category)?.icon] || ICONS["trash-can"];
-  return `<g class="bin b${i}" transform="translate(${x} ${y})">
+// The drawn bin (44 × 66 at x, y) in the color of its type, with the type's icon on its front. Four silhouettes,
+// chosen with `bin_shape`: the default rolled-out wheelie bin, a flat-lid two-wheel bin, a cylindrical can and a
+// North-American roll-out cart. Each keeps a `.lid` and, where it has one, a `.wheel` group for the animations.
+const BIN_SHAPES = {
+  wheelie: (c, dark, g) => `
     <path d="M5 14h34l-3.6 46a3 3 0 0 1-3 2.8H11.6a3 3 0 0 1-3-2.8z" style="fill:${c}"/>
     <path d="M5 14h34l-.5 6H5.5z" fill="#000" opacity=".16"/>
     <path d="M10 22h3l-1.6 36h-2z" fill="#fff" opacity=".18"/>
-    <path transform="translate(14 28) scale(.67)" d="${glyph}" fill="#fff" opacity=".92"/>
+    <path transform="translate(14 28) scale(.67)" d="${g}" fill="#fff" opacity=".92"/>
     <g class="lid"><path d="M2 8.5h40a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5H2A1.5 1.5 0 0 1 .5 13v-3A1.5 1.5 0 0 1 2 8.5z" style="fill:${dark}"/>
       <rect x="34" y="5" width="9" height="4.5" rx="1.5" style="fill:${dark}"/></g>
-    <g class="wheel"><circle cx="12" cy="61" r="5.5" fill="#2b2b2b"/><circle cx="12" cy="61" r="2" fill="#9e9e9e"/><rect x="11.4" y="56" width="1.2" height="10" fill="#9e9e9e"/></g>
-  </g>`;
+    <g class="wheel"><circle cx="12" cy="61" r="5.5" fill="#2b2b2b"/><circle cx="12" cy="61" r="2" fill="#9e9e9e"/><rect x="11.4" y="56" width="1.2" height="10" fill="#9e9e9e"/></g>`,
+  flat: (c, dark, g) => `
+    <g class="wheel"><circle cx="11" cy="61" r="3.2" fill="#2b2b2b"/><circle cx="11" cy="61" r="1.3" fill="#9e9e9e"/></g>
+    <g class="wheel"><circle cx="33" cy="61" r="3.2" fill="#2b2b2b"/><circle cx="33" cy="61" r="1.3" fill="#9e9e9e"/></g>
+    <path d="M5 14h34l-2 47a3 3 0 0 1-3 2.8H10a3 3 0 0 1-3-2.8z" style="fill:${c}"/>
+    <path d="M5 14h34l-.3 5H5.3z" fill="#000" opacity=".16"/>
+    <path d="M10 21h3l-1.4 37h-2z" fill="#fff" opacity=".18"/>
+    <path transform="translate(13.5 28) scale(.66)" d="${g}" fill="#fff" opacity=".92"/>
+    <g class="lid"><path d="M2 7.5h40a1.8 1.8 0 0 1 1.8 1.8v2.6a1.8 1.8 0 0 1-1.8 1.8H2a1.8 1.8 0 0 1-1.8-1.8V9.3A1.8 1.8 0 0 1 2 7.5z" style="fill:${dark}"/>
+      <rect x="18" y="4" width="8" height="4" rx="1.6" style="fill:${dark}"/></g>`,
+  can: (c, dark, g) => `
+    <path d="M7 16v43a15 4.5 0 0 0 30 0V16z" style="fill:${c}"/>
+    <path d="M11 20C9.8 33 9.8 46 11.4 58" stroke="#fff" stroke-opacity=".22" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M33 21C34 33 34 45 32.6 56" stroke="#000" stroke-opacity=".13" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path transform="translate(13 28) scale(.6)" d="${g}" fill="#fff" opacity=".92"/>
+    <g class="lid"><path d="M7 15a15 5 0 0 1 30 0a15 4 0 0 1-30 0z" style="fill:${dark}"/>
+      <path d="M9 13a13 6 0 0 1 26 0z" style="fill:${dark}"/>
+      <rect x="18.5" y="6" width="7" height="3.4" rx="1.6" style="fill:${dark}"/><rect x="20.5" y="8.5" width="3" height="4" style="fill:${dark}"/></g>`,
+  cart: (c, dark, g) => `
+    <g class="wheel"><circle cx="13" cy="60" r="6" fill="#2b2b2b"/><circle cx="13" cy="60" r="2.2" fill="#9e9e9e"/><rect x="12.4" y="54" width="1.2" height="12" fill="#9e9e9e"/></g>
+    <path d="M8 20C8 15 11 14 15 14h14c4 0 7 1 7 6l-2.4 40a3.2 3.2 0 0 1-3.2 3H13.6a3.2 3.2 0 0 1-3.2-3z" style="fill:${c}"/>
+    <path d="M8.3 20C8.3 15.4 11 14.3 15 14.3h14c4 0 6.7 1.2 6.7 5.7l-.3 5H8.6z" fill="#000" opacity=".15"/>
+    <path d="M12 23h3l-1.3 34h-2z" fill="#fff" opacity=".18"/>
+    <path transform="translate(14 29) scale(.62)" d="${g}" fill="#fff" opacity=".92"/>
+    <g class="lid"><path d="M6 12h27l5 5v2.2a1.6 1.6 0 0 1-1.6 1.6H6a1.6 1.6 0 0 1-1.6-1.6V13.6A1.6 1.6 0 0 1 6 12z" style="fill:${dark}"/></g>`,
 };
 
-// The bins of the next collection (three at most), side by side; the state (tonight / today / '') sets the animation.
-const sceneSvg = (types, state) => {
+const binSvg = (type, x, y, i, shape) => {
+  const c = type.color;
+  const dark = `color-mix(in srgb, ${c} 68%, #000)`;
+  const glyph = ICONS[iconName(type.icon)] || ICONS[categoryByKey(type.category)?.icon] || ICONS["trash-can"];
+  return `<g class="bin b${i}" transform="translate(${x} ${y})">${(BIN_SHAPES[shape] || BIN_SHAPES.wheelie)(c, dark, glyph)}</g>`;
+};
+
+// The bins of the next collection (three at most), side by side; `shape` (bin_shape) sets their silhouette, the
+// state (tonight / today / '') the animation.
+const sceneSvg = (types, state, shape) => {
   const list = types.slice(0, 3);
   const n = Math.max(1, list.length);
   const w = 120;
   const gap = n === 1 ? 0 : n === 2 ? 46 : 36;
   const start = (w - 44 - gap * (n - 1)) / 2;
   const scale = n === 3 ? 0.86 : 1;
-  const bins = list.map((ty, i) => binSvg(ty, start + gap * i, 38, i)).join("");
+  const bins = list.map((ty, i) => binSvg(ty, start + gap * i, 38, i, shape)).join("");
   return `<svg class="scene ${state}" viewBox="0 0 120 112" role="img" aria-hidden="true">
     <ellipse cx="60" cy="104" rx="${26 + 16 * (n - 1)}" ry="4" fill="#000" opacity=".12"/>
     <circle class="ring" cx="60" cy="70" r="50" fill="none" stroke="var(--wc-active)" stroke-width="2"/>
@@ -1833,7 +1995,7 @@ class WasteBase extends HTMLElement {
   _hero(next) {
     const loc = this._locale();
     if (!next.length) {
-      return `<div class="hero"><div class="picture">${sceneSvg([{ ...OTHER, name: "" }], "")}</div><div class="info"><div class="empty">${esc(this._t(this._loading() ? "loading" : "no_collection"))}</div></div></div>`;
+      return `<div class="hero"><div class="picture">${sceneSvg([{ ...OTHER, name: "" }], "", this._config.bin_shape)}</div><div class="info"><div class="empty">${esc(this._t(this._loading() ? "loading" : "no_collection"))}</div></div></div>`;
     }
     const due = this._due(next);
     const cls = dayClass(next[0].days);
@@ -1844,6 +2006,7 @@ class WasteBase extends HTMLElement {
         <div class="picture clickable" role="button" tabindex="0" aria-label="${esc(next.map((c) => c.type.name).join(", "))}" data-entity="${esc(next[0].entity)}">${sceneSvg(
           next.map((c) => c.type),
           due,
+          this._config.bin_shape,
         )}</div>
         <div class="info">
           <div class="when">${esc(countdown(next[0].days, loc))}</div>
@@ -2029,8 +2192,20 @@ const LANGUAGES = [
   ["el", "Ελληνικά"],
 ];
 
-// Editor labels whose translation key differs from the option name.
-const LABELS = { title: "title_opt" };
+// Editor labels whose translation key differs from the option name (a waste category key → its `cat_…` label).
+const LABELS = { title: "title_opt", ...Object.fromEntries(CATEGORIES.map((c) => [c.key, `cat_${c.key}`])) };
+
+// Categories offered in the editor's "Bin colors" section, and the conversions between a hex color (kept in the
+// YAML) and the [r, g, b] the color picker uses.
+const COLOR_CATS = ["garbage", "recycling", "paper", "glass", "organic", "garden", "bulky", "hazardous", "textile", "electronics"];
+const hexToRgb = (v) => {
+  const m = typeof v === "string" && v.match(/^#?([0-9a-fA-F]{6})$/);
+  if (!m) return null;
+  const n = Number.parseInt(m[1], 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+};
+const rgbToHex = (a) =>
+  Array.isArray(a) && a.length === 3 ? `#${a.map((x) => Math.max(0, Math.min(255, Math.round(x))).toString(16).padStart(2, "0")).join("")}` : null;
 
 class WasteEditorBase extends HTMLElement {
   // [name, default]
@@ -2064,8 +2239,13 @@ class WasteEditorBase extends HTMLElement {
         name: "type_names",
         selector: { select: { mode: "dropdown", options: ["source", "category"].map((v) => ({ value: v, label: tr(`type_names_${v}`) })) } },
       },
+      {
+        name: "bin_shape",
+        selector: { select: { mode: "dropdown", options: ["wheelie", "flat", "can", "cart"].map((v) => ({ value: v, label: tr(`bin_shape_${v}`) })) } },
+      },
       { name: "tonight_from", selector: { number: { min: 0, max: 23, mode: "box", unit_of_measurement: "h" } } },
       ...this.constructor.extraFields(tr),
+      { type: "expandable", name: "colors", title: tr("colors"), schema: COLOR_CATS.map((k) => ({ name: k, selector: { color_rgb: {} } })) },
       { type: "grid", name: "", schema: this.constructor.toggles.map(([name]) => ({ name, selector: { boolean: {} } })) },
       { name: "language", selector: { select: { mode: "dropdown", options: [{ value: "", label: tr("lang_auto") }, ...LANGUAGES.map(([value, label]) => ({ value, label }))] } } },
     ];
@@ -2090,7 +2270,16 @@ class WasteEditorBase extends HTMLElement {
           const auto = !this._config.entities && !this._config.entity;
           if (auto && JSON.stringify(config.entities) === JSON.stringify(autoEntities(this._hass))) delete config.entities;
         }
-        const defaults = { ...Object.fromEntries(toggles), type_names: "source", tonight_from: 0, days: DEFAULT_DAYS, max_items: DEFAULT_ITEMS, collapsed: [] };
+        // Bin colors: the picker gives [r, g, b]; keep them as hex, and only those that differ from the category default.
+        if (config.colors && typeof config.colors === "object") {
+          const colors = {};
+          for (const [k, v] of Object.entries(config.colors)) {
+            const hex = Array.isArray(v) ? rgbToHex(v) : safeColor(v);
+            if (hex && hex.toLowerCase() !== String(categoryByKey(k)?.color || "").toLowerCase()) colors[k] = hex;
+          }
+          config.colors = colors;
+        }
+        const defaults = { ...Object.fromEntries(toggles), type_names: "source", bin_shape: "wheelie", tonight_from: 0, days: DEFAULT_DAYS, max_items: DEFAULT_ITEMS, collapsed: [], colors: {} };
         for (const [k, v] of Object.entries(config)) {
           // Keep the YAML minimal: drop empty values and options left at their default.
           if (v === "" || v === undefined || v === null || (Array.isArray(v) && !v.length && k === "entities") || (k in defaults && JSON.stringify(v) === JSON.stringify(defaults[k])))
@@ -2101,9 +2290,11 @@ class WasteEditorBase extends HTMLElement {
       });
       this.appendChild(this._form);
     }
-    const data = { type_names: "source", tonight_from: 0, days: DEFAULT_DAYS, max_items: DEFAULT_ITEMS, collapsed: [], ...this._config };
+    const data = { type_names: "source", bin_shape: "wheelie", tonight_from: 0, days: DEFAULT_DAYS, max_items: DEFAULT_ITEMS, collapsed: [], ...this._config };
     data.entities = entityConfs(this._hass, this._config).map((e) => e.entity);
     for (const [name, def] of toggles) if (data[name] === undefined) data[name] = def;
+    // The color picker needs [r, g, b]; feed it the hex colors kept in the config (others stay unset = category default).
+    data.colors = Object.fromEntries(Object.entries(this._config.colors || {}).map(([k, v]) => [k, hexToRgb(v) || v]));
     this._form.hass = this._hass;
     const h = this._hass;
     const dataDeps = [this._config, h.entities];
