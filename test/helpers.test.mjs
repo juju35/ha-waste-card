@@ -199,6 +199,28 @@ test("the picture draws up to three bins, animated by what is due", () => {
   assert.doesNotMatch(svg, /#444/);
 });
 
+test("colors: a category color is overridden, but a type rule or an entity color still wins", () => {
+  const tr = (k) => k;
+  // The whole category is recoloured (the Québec case: different bin colors than the defaults).
+  assert.equal(wc.typeOf("Restmüll", {}, { colors: { garbage: "#2e7d32" } }, tr).color, "#2e7d32");
+  // A per-type rule and a per-entity color keep priority over the category override.
+  assert.equal(wc.typeOf("Restmüll", {}, { colors: { garbage: "#2e7d32" }, types: [{ match: "Rest", color: "#111111" }] }, tr).color, "#111111");
+  assert.equal(wc.typeOf("Restmüll", { color: "#222222" }, { colors: { garbage: "#2e7d32" } }, tr).color, "#222222");
+  // An unsafe value is ignored and the default color stands.
+  assert.equal(wc.typeOf("Restmüll", {}, { colors: { garbage: "red;}" } }, tr).color, "#616161");
+});
+
+test("bin_shape: each silhouette is drawn, unknown and default fall back to the wheelie", () => {
+  const ty = { color: "#616161", icon: "trash-can", category: "garbage" };
+  const cart = wc.sceneSvg([ty], "", "cart");
+  assert.match(cart, /M6 12h27l5 5/); // the roll-out cart's hinged lid
+  const can = wc.sceneSvg([ty], "", "can");
+  assert.match(can, /M7 16v43/); // the cylindrical body
+  assert.doesNotMatch(can, /class="wheel"/); // a can has no wheel
+  assert.equal((wc.sceneSvg([ty], "", "flat").match(/class="wheel"/g) || []).length, 2); // the flat-lid bin has two
+  for (const shape of [undefined, "bogus"]) assert.match(wc.sceneSvg([ty], "", shape), /M2 8\.5h40/); // the wheelie lid
+});
+
 test("every language has every text, and the editor lists them all", () => {
   const keys = Object.keys(wc.STRINGS.en).sort();
   for (const [l, table] of Object.entries(wc.STRINGS)) assert.deepEqual([...Object.keys(table)].sort(), [...keys], l);
