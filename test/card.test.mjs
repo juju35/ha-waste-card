@@ -37,7 +37,9 @@ test("the next collection, with its bins to put out tonight", () => {
   // The illustrated header: the state's colour, the bins in front of the hedge, the state and the bins' names.
   assert.match(h, /<div class="banner warn">/);
   assert.match(h, /<svg class="hedge clickable"[^>]*data-entity="sensor\.waste_collection"/);
-  assert.match(h, /<div class="sub">Put out tonight · Glass, Recycling<\/div>/);
+  // The state is the status pill right after the title, the bins' names under it.
+  assert.match(h, /<div class="trow"><div class="name">[^<]*<\/div><span class="chip clickable" role="button" tabindex="0" data-entity="sensor\.waste_collection" title="Put out tonight"/);
+  assert.match(h, /<div class="sub">Glass, Recycling<\/div>/);
   // One tile per bin type, the date sensor included.
   assert.equal((h.match(/class="tile clickable/g) || []).length, 7);
   assert.match(h, /Bulky waste<\/div><div class="v">In 25 days/);

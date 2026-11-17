@@ -1697,10 +1697,30 @@ const BANNER_STYLE = `
   .banner.night .type-icon .icon { fill: color-mix(in srgb, var(--c) 72%, #fff); }
   .banner .name { font-weight: 500; }
   .banner .sub { font-size: 13px; color: var(--wc-sky-muted); }
-  .banner.active .sub, .banner.warn .sub { font-weight: 500; color: color-mix(in srgb, var(--c) 62%, var(--wc-sky-text)); }
-  .banner.night.active .sub, .banner.night.warn .sub { color: color-mix(in srgb, var(--c) 55%, #fff); }
-  .banner .zoom { position: absolute; top: 6px; right: 6px; margin: 0; color: #10283f; background: rgba(255,255,255,.55); }
-  .banner.night .zoom { color: #fff; background: rgba(10,20,40,.45); }
+  :host([hide-subtitle]) .banner .sub, :host([hide-title]) .trow .name { display: none; }
+  /* Status pill right after the title, on a frosted tint of the icon's colour; the title is cut first (about four
+     characters kept). When it does not fit there (measured by the card, or a narrow card) it goes on its own line
+     under the subtitle, where it may run over the left of the scene. */
+  .htext .titles { min-width: 0; }
+  .trow { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .trow .name { flex: 0 100 auto; min-width: 4ch; }
+  .banner .chip { max-width: 51%; line-height: 16px; background: color-mix(in srgb, var(--c, var(--wc-ok)) 18%, rgba(255,255,255,.78));
+                  color: color-mix(in srgb, var(--c, var(--wc-ok)) 45%, #0d2a45); }
+  .banner.night .chip { background: color-mix(in srgb, var(--c, var(--wc-ok)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--wc-ok)) 35%, #ffffff); }
+  .banner .chip .dot { width: 7px; height: 7px; }
+  .banner[data-wrap] .titles { gap: 1px; }
+  .banner[data-wrap] .trow { display: contents; }
+  .banner[data-wrap] .chip { order: 9; align-self: flex-start; max-width: calc(100cqw - 76px); margin-top: 2px; }
+  @container (max-width: 260px) {
+    .banner .trow { display: contents; }
+    .banner .chip { order: 9; align-self: flex-start; max-width: calc(100cqw - 76px); margin-top: 2px; }
+  }
+  /* The mini card's expand / collapse button: 24 px, frosted, 5 px from the banner's top right corner. */
+  .banner .zoom { position: absolute; top: 5px; right: 5px; z-index: 2; margin: 0; color: #33506b; background: rgba(255,255,255,.55);
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }
+  .banner.night .zoom { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+  .banner .zoom:hover { background: rgba(255,255,255,.75); color: #33506b; }
+  .banner.night .zoom:hover { background: rgba(255,255,255,.22); color: #fff; }
   .banner .hedge.clickable:focus-visible { outline: 2px solid var(--primary-color, var(--wc-accent)); outline-offset: -2px; }
   /* The bins are in the banner: the picture beside the countdown gives way. */
   .illustrated .hero .picture { display: none; }
@@ -1980,6 +2000,17 @@ class WasteBase extends HTMLElement {
     (this._outside ??= watchOutside(this, (ev) => this._onOutside(ev))).on();
     // Back on the page after leaving it: rendered again in its default state.
     if (this._hass && this._config) this._update();
+    // A new width: the status pill is fitted again (in the next frame, and only for a new width).
+    if (typeof ResizeObserver === "function") {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
     // The countdown and the evening highlight move with the clock: re-checked every minute.
     clearInterval(this._tick);
     this._tick = setInterval(() => {
@@ -1990,6 +2021,9 @@ class WasteBase extends HTMLElement {
   disconnectedCallback() {
     clearInterval(this._tick);
     this._tick = null;
+    this._resize?.disconnect();
+    this._fitWidth = undefined;
+    if (this._fitFrame) cancelAnimationFrame(this._fitFrame);
     this._outside?.off();
     this._pressing = false;
     window.removeEventListener("pointerup", this._onPressEnd, true);
@@ -2036,8 +2070,25 @@ class WasteBase extends HTMLElement {
       const focused = this._byPointer ? null : this._focusedSpot();
       this._html = html;
       this.shadowRoot.innerHTML = html;
+      this._fitPill();
       if (focused) this._restoreFocus(focused);
     }
+  }
+
+  // The banner's status pill goes on its own line under the subtitle when it is cut next to the title. Fractional
+  // widths: scrollWidth / clientWidth are rounded and miss a label cut by less than a pixel.
+  _fitPill() {
+    const banner = this.shadowRoot.querySelector?.(".banner");
+    const chip = banner?.querySelector?.(".trow .chip");
+    if (!chip?.getBoundingClientRect) return;
+    banner.removeAttribute("data-wrap");
+    const have = chip.getBoundingClientRect().width;
+    chip.style.maxWidth = "none";
+    chip.style.flex = "none";
+    const need = chip.getBoundingClientRect().width;
+    chip.style.maxWidth = "";
+    chip.style.flex = "";
+    if (need > have + 0.01) banner.setAttribute("data-wrap", "");
   }
 
   // The focused element (keyboard user), found again after a re-render by its data attributes.
@@ -2193,12 +2244,13 @@ class WasteBase extends HTMLElement {
     const cls = dayClass(days);
     const due = this._due(next);
     const loc = this._locale();
-    let sub = "";
-    if (!next.length) sub = this._t(this._loading() ? "loading" : "no_collection");
-    else {
-      sub = due === "tonight" ? this._t("put_out_tonight") : countdown(days, loc);
-      if (types) sub += ` · ${next.map((x) => x.type.name).join(", ")}`;
-    }
+    // The status pill right after the title (on its own line under the subtitle when it does not fit there): the
+    // countdown ("Tomorrow", "Put out tonight"), in the colour of the header icon; the subtitle names the bins.
+    const text = !next.length ? this._t(this._loading() ? "loading" : "no_collection") : due === "tonight" ? this._t("put_out_tonight") : countdown(days, loc);
+    const chip = `<span class="chip${next.length ? ` clickable" role="button" tabindex="0" data-entity="${esc(next[0].entity)}"` : '"'} title="${esc(text)}" aria-label="${esc(
+      text,
+    )}"><span class="dot"></span><span class="chip-text">${esc(text)}</span></span>`;
+    const sub = types && next.length ? next.map((x) => x.type.name).join(", ") : "";
     const bins = next.length ? next.map((x) => x.type) : [{ ...OTHER, name: "" }];
     const hedge = hedgeSvg(bins, due, c.bin_shape, this._uid);
     const scene = next.length
@@ -2213,8 +2265,8 @@ class WasteBase extends HTMLElement {
         <div class="htext">
           <div class="type-icon">${svgIcon("trash-can")}</div>
           <div class="titles">
-            <div class="name">${esc(c.title || this._t("title"))}</div>
-            <div class="sub">${esc(sub)}</div>
+            <div class="trow"><div class="name">${esc(c.title || this._t("title"))}</div>${chip}</div>
+            ${sub ? `<div class="sub">${esc(sub)}</div>` : ""}
           </div>
         </div>
         ${this._zoomButton()}
