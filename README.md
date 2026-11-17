@@ -29,7 +29,7 @@ The cards read the sensors of [Waste Collection Schedule](https://github.com/mam
 ## Features
 
 - Two cards: a full **Waste Card** (`custom:waste-card`) and a compact **Waste Mini Card** (`custom:waste-mini-card`, next collection only)
-- **Illustrated header** on both cards: the bins of the next collection stand in front of a hedge, above a road strip; the round icon and the state line take the state's color (blue today, amber tomorrow, green later, grey with nothing planned), a glow lights up under the bins due today or tomorrow, and the scene turns to night with the sun (`illustration_theme`, `illustration: false` for the classic header)
+- **Illustrated header** on both cards: the bins of the next collection stand in front of a hedge, above a road strip; the round icon and the state line take the state's color (blue today, amber tomorrow, green later, grey with nothing planned), a glow lights up under the bins due today or tomorrow, and the scene turns to night with Home Assistant's dark theme (`illustration_theme`, `illustration: false` for the classic header)
 - Drawn bins of the next collection, in the color of their type with its icon on the front, **animated** by what is due: rolled to the kerb under the moon the evening before, lids lifting with pulsing rings on collection day (see [Animations](#animations)); four bin shapes (`bin_shape`: wheelie, flat-lid, cylindrical can, North-American cart)
 - Color per waste category (`colors`) and own color per type (`types`): the bin colors of your own town
 - Countdown worded in your language (*Today*, *Tomorrow*, *In 3 days*, *Übermorgen*…), and the date of the collection
@@ -143,7 +143,7 @@ colors:                              # recolour whole categories (your town's bi
   organic: "#4e7a27"
 tonight_from: 16
 illustration: true                   # false: classic header
-illustration_theme: auto             # auto (sun / dark theme), day or night
+illustration_theme: auto             # auto (follows the theme), day or night
 show_title: true
 show_subtitle: true
 show_bins: true
@@ -174,7 +174,7 @@ language: en
 | `show_title` | both | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
 | `show_subtitle` | both | `true` | Show the subtitle (next collection day) under the title |
 | `illustration` | both | `true` | Illustrated header: the bins of the next collection in front of a hedge, the title with the state of the collection as a status pill on the sky. `false` brings back the classic header (icon, title, subtitle and countdown chip). Also in the visual editor |
-| `illustration_theme` | both | `auto` | Day or night picture: `auto` is night when `sun.sun` is below the horizon or with Home Assistant's dark theme (even while the sun is up), `day` or `night` force it. Also in the visual editor |
+| `illustration_theme` | both | `auto` | Day or night picture: `auto` (follows the Home Assistant theme: night with a dark theme, day with a light theme), `day` or `night` force it. Also in the visual editor |
 | `tonight_from` | both | `0` | Hour (0–23) from which a collection due tomorrow is highlighted as **Put out tonight**; `0`: the whole day before |
 | `type_names` | both | `source` | Name of each collection type: `source` (as the source gives it, e.g. `Restmüll`) or `category` (the translated waste category, e.g. *Household waste*) |
 | `types` | both | — | Settings per collection type, as a list: `match` (text contained in the type, or `/regex/`; defaults to `name`), `name`, `category`, `icon` (`mdi:…`) and `color` (any CSS color). The first matching entry wins. YAML only (the visual editor keeps it) |
