@@ -174,7 +174,7 @@ language: en
 | `show_title` | both | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
 | `show_subtitle` | both | `true` | Show the subtitle (next collection day) under the title |
 | `illustration` | both | `true` | Illustrated header: the bins of the next collection in front of a hedge, the title with the state of the collection as a status pill on the sky. `false` brings back the classic header (icon, title, subtitle and countdown chip). Also in the visual editor |
-| `illustration_theme` | both | `auto` | Day or night picture: `auto` follows `sun.sun` (else Home Assistant's dark theme), `day` or `night` force it. Also in the visual editor |
+| `illustration_theme` | both | `auto` | Day or night picture: `auto` is night when `sun.sun` is below the horizon or with Home Assistant's dark theme (even while the sun is up), `day` or `night` force it. Also in the visual editor |
 | `tonight_from` | both | `0` | Hour (0–23) from which a collection due tomorrow is highlighted as **Put out tonight**; `0`: the whole day before |
 | `type_names` | both | `source` | Name of each collection type: `source` (as the source gives it, e.g. `Restmüll`) or `category` (the translated waste category, e.g. *Household waste*) |
 | `types` | both | — | Settings per collection type, as a list: `match` (text contained in the type, or `/regex/`; defaults to `name`), `name`, `category`, `icon` (`mdi:…`) and `color` (any CSS color). The first matching entry wins. YAML only (the visual editor keeps it) |

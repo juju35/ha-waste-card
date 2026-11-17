@@ -73,6 +73,12 @@ test("illustrated header: night theme, unique ids, classic header with illustrat
   const id = (h) => h.match(/id="(wc-mask-\d+)"/)[1];
   assert.notEqual(id(a.html()), id(b.html()));
   assert.match(newCard({}, { hass: makeHass(states, { themes: { darkMode: true } }) }).html(), /banner warn night/);
+  // The dark theme gives the night picture even while the sun is up; a light theme keeps the day; forced wins.
+  const up = (darkMode) => makeHass({ ...states, "sun.sun": { state: "above_horizon", attributes: {} } }, { themes: { darkMode } });
+  assert.match(newCard({}, { hass: up(true) }).html(), /<div class="banner warn night">/);
+  assert.match(newCard({}, { hass: up(false) }).html(), /<div class="banner warn">/);
+  assert.match(newCard({ illustration_theme: "day" }, { hass: up(true) }).html(), /<div class="banner warn">/);
+  assert.match(newCard({ illustration_theme: "night" }, { hass: up(false) }).html(), /<div class="banner warn night">/);
   const { html } = newCard({ illustration: false });
   assert.doesNotMatch(html(), /class="banner/);
   assert.match(html(), /<span class="chip clickable warn"[^>]*data-entity="sensor\.waste_collection"/);
