@@ -1723,7 +1723,18 @@ const BANNER_STYLE = `
   .illustrated .hero .picture { display: none; }
   .illustrated .alert-line.pill-echo { display: none; }
   @container (max-width: 200px) { .illustrated .alert-line.pill-echo { display: flex; } }
-  @container (max-width: 200px) { .banner .hedge { display: none; } .htext { right: 36px; } }
+  /* Narrower cards: the picture is drawn smaller (80 %, then 70 %), its left part (hedge only) faded out, so that the
+     title stays whole and the status pill keeps its label; narrower still, the road strip alone (the bins are the
+     hero's big line). */
+  @container (max-width: 380px) {
+    .banner { --wc-art-w: 115px; }
+    .banner .hedge { width: 160px; height: 64px; -webkit-mask-image: linear-gradient(90deg, transparent 45px, #000 57px); mask-image: linear-gradient(90deg, transparent 45px, #000 57px); }
+  }
+  @container (max-width: 320px) {
+    .banner { --wc-art-w: 95px; }
+    .banner .hedge { width: 140px; height: 56px; -webkit-mask-image: linear-gradient(90deg, transparent 45px, #000 55px); mask-image: linear-gradient(90deg, transparent 45px, #000 55px); }
+  }
+  @container (max-width: 270px) { .banner .hedge { display: none; } .htext { right: 36px; } }
 `;
 
 let _wcUid = 0;
