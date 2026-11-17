@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 - 2026-11-17
+
+### Features
+- Illustrated header on the full and the mini card (90 px): the card's own bins of the next collection, in their colors and shape, stand in front of a hedge above a 10 px road strip, with the title and the state of the collection (*Today*, *Tomorrow · Glass, Recycling*, *Put out tonight*) on the sky. The round icon and the state line take the state's color, a glow lights up under the bins due today or tomorrow (pulsing today), and the existing animations play in the scene (lids lifting today, bins rolling the evening before).
+- Night picture following `sun.sun` (else Home Assistant's dark theme), forced with `illustration_theme: day | night`; `illustration: false` keeps the classic header. Both options are in the visual editors, translated in every language.
+
 ## 1.1.0 - 2026-11-14
 
 ### Features

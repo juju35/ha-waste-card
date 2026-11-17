@@ -154,6 +154,11 @@ const STRINGS = {
     zoom_helper: "Switches the mini card to the full card and back",
     language: "Language",
     lang_auto: "Automatic",
+    illustration: "Animated illustration",
+    illustration_theme: "Illustration theme",
+    theme_auto: "Automatic (sun)",
+    theme_day: "Day",
+    theme_night: "Night",
   },
   fr: {
     title: "Collecte des déchets",
@@ -201,6 +206,11 @@ const STRINGS = {
     zoom_helper: "Bascule la mini-carte vers la carte complète et inversement",
     language: "Langue",
     lang_auto: "Automatique",
+    illustration: "Illustration animée",
+    illustration_theme: "Thème de l’illustration",
+    theme_auto: "Automatique (soleil)",
+    theme_day: "Jour",
+    theme_night: "Nuit",
   },
   de: {
     title: "Müllabfuhr",
@@ -248,6 +258,11 @@ const STRINGS = {
     zoom_helper: "Schaltet die Mini-Karte auf die volle Karte um und zurück",
     language: "Sprache",
     lang_auto: "Automatisch",
+    illustration: "Animierte Illustration",
+    illustration_theme: "Thema der Illustration",
+    theme_auto: "Automatisch (Sonne)",
+    theme_day: "Tag",
+    theme_night: "Nacht",
   },
   es: {
     title: "Recogida de residuos",
@@ -295,6 +310,11 @@ const STRINGS = {
     zoom_helper: "Cambia la minitarjeta a la tarjeta completa y viceversa",
     language: "Idioma",
     lang_auto: "Automático",
+    illustration: "Ilustración animada",
+    illustration_theme: "Tema de la ilustración",
+    theme_auto: "Automático (sol)",
+    theme_day: "Día",
+    theme_night: "Noche",
   },
   it: {
     title: "Raccolta rifiuti",
@@ -342,6 +362,11 @@ const STRINGS = {
     zoom_helper: "Passa dalla mini scheda alla scheda completa e viceversa",
     language: "Lingua",
     lang_auto: "Automatica",
+    illustration: "Illustrazione animata",
+    illustration_theme: "Tema dell’illustrazione",
+    theme_auto: "Automatico (sole)",
+    theme_day: "Giorno",
+    theme_night: "Notte",
   },
   nl: {
     title: "Afvalinzameling",
@@ -389,6 +414,11 @@ const STRINGS = {
     zoom_helper: "Schakelt de minikaart naar de volledige kaart en terug",
     language: "Taal",
     lang_auto: "Automatisch",
+    illustration: "Geanimeerde illustratie",
+    illustration_theme: "Thema van de illustratie",
+    theme_auto: "Automatisch (zon)",
+    theme_day: "Dag",
+    theme_night: "Nacht",
   },
   pt: {
     title: "Recolha de resíduos",
@@ -436,6 +466,11 @@ const STRINGS = {
     zoom_helper: "Alterna o mini cartão para o cartão completo e vice-versa",
     language: "Idioma",
     lang_auto: "Automático",
+    illustration: "Ilustração animada",
+    illustration_theme: "Tema da ilustração",
+    theme_auto: "Automático (sol)",
+    theme_day: "Dia",
+    theme_night: "Noite",
   },
   pl: {
     title: "Wywóz odpadów",
@@ -483,6 +518,11 @@ const STRINGS = {
     zoom_helper: "Przełącza mini kartę na pełną kartę i z powrotem",
     language: "Język",
     lang_auto: "Automatycznie",
+    illustration: "Animowana ilustracja",
+    illustration_theme: "Motyw ilustracji",
+    theme_auto: "Automatycznie (słońce)",
+    theme_day: "Dzień",
+    theme_night: "Noc",
   },
   sr: {
     title: "Одвоз отпада",
@@ -530,6 +570,11 @@ const STRINGS = {
     zoom_helper: "Пребацује мини картицу на пуну картицу и назад",
     language: "Језик",
     lang_auto: "Аутоматски",
+    illustration: "Анимирана илустрација",
+    illustration_theme: "Тема илустрације",
+    theme_auto: "Аутоматски (сунце)",
+    theme_day: "Дан",
+    theme_night: "Ноћ",
   },
   "sr-Latn": {
     title: "Odvoz otpada",
@@ -577,6 +622,11 @@ const STRINGS = {
     zoom_helper: "Prebacuje mini karticu na punu karticu i nazad",
     language: "Jezik",
     lang_auto: "Automatski",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Automatski (sunce)",
+    theme_day: "Dan",
+    theme_night: "Noć",
   },
   ro: {
     title: "Colectarea deșeurilor",
@@ -624,6 +674,11 @@ const STRINGS = {
     zoom_helper: "Comută mini cardul la cardul complet și înapoi",
     language: "Limbă",
     lang_auto: "Automat",
+    illustration: "Ilustrație animată",
+    illustration_theme: "Tema ilustrației",
+    theme_auto: "Automat (soare)",
+    theme_day: "Zi",
+    theme_night: "Noapte",
   },
   da: {
     title: "Affaldsindsamling",
@@ -671,6 +726,11 @@ const STRINGS = {
     zoom_helper: "Skifter minikortet til det fulde kort og tilbage",
     language: "Sprog",
     lang_auto: "Automatisk",
+    illustration: "Animeret illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatisk (sol)",
+    theme_day: "Dag",
+    theme_night: "Nat",
   },
   sv: {
     title: "Sophämtning",
@@ -718,6 +778,11 @@ const STRINGS = {
     zoom_helper: "Växlar minikortet till hela kortet och tillbaka",
     language: "Språk",
     lang_auto: "Automatiskt",
+    illustration: "Animerad illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatiskt (sol)",
+    theme_day: "Dag",
+    theme_night: "Natt",
   },
   bg: {
     title: "Сметоизвозване",
@@ -765,6 +830,11 @@ const STRINGS = {
     zoom_helper: "Превключва мини картата към пълната карта и обратно",
     language: "Език",
     lang_auto: "Автоматично",
+    illustration: "Анимирана илюстрация",
+    illustration_theme: "Тема на илюстрацията",
+    theme_auto: "Автоматично (слънце)",
+    theme_day: "Ден",
+    theme_night: "Нощ",
   },
   ru: {
     title: "Вывоз мусора",
@@ -812,6 +882,11 @@ const STRINGS = {
     zoom_helper: "Переключает мини-карточку на полную и обратно",
     language: "Язык",
     lang_auto: "Автоматически",
+    illustration: "Анимированная иллюстрация",
+    illustration_theme: "Тема иллюстрации",
+    theme_auto: "Автоматически (солнце)",
+    theme_day: "День",
+    theme_night: "Ночь",
   },
   uk: {
     title: "Вивезення сміття",
@@ -859,6 +934,11 @@ const STRINGS = {
     zoom_helper: "Перемикає мінікартку на повну й назад",
     language: "Мова",
     lang_auto: "Автоматично",
+    illustration: "Анімована ілюстрація",
+    illustration_theme: "Тема ілюстрації",
+    theme_auto: "Автоматично (сонце)",
+    theme_day: "День",
+    theme_night: "Ніч",
   },
   hu: {
     title: "Hulladékszállítás",
@@ -906,6 +986,11 @@ const STRINGS = {
     zoom_helper: "A mini kártyát a teljes kártyára váltja és vissza",
     language: "Nyelv",
     lang_auto: "Automatikus",
+    illustration: "Animált illusztráció",
+    illustration_theme: "Az illusztráció témája",
+    theme_auto: "Automatikus (nap)",
+    theme_day: "Nappal",
+    theme_night: "Éjszaka",
   },
   sk: {
     title: "Odvoz odpadu",
@@ -953,6 +1038,11 @@ const STRINGS = {
     zoom_helper: "Prepne mini kartu na celú kartu a späť",
     language: "Jazyk",
     lang_auto: "Automaticky",
+    illustration: "Animovaná ilustrácia",
+    illustration_theme: "Téma ilustrácie",
+    theme_auto: "Automaticky (slnko)",
+    theme_day: "Deň",
+    theme_night: "Noc",
   },
   cs: {
     title: "Svoz odpadu",
@@ -1000,6 +1090,11 @@ const STRINGS = {
     zoom_helper: "Přepne mini kartu na celou kartu a zpět",
     language: "Jazyk",
     lang_auto: "Automaticky",
+    illustration: "Animovaná ilustrace",
+    illustration_theme: "Motiv ilustrace",
+    theme_auto: "Automaticky (slunce)",
+    theme_day: "Den",
+    theme_night: "Noc",
   },
   sl: {
     title: "Odvoz odpadkov",
@@ -1047,6 +1142,11 @@ const STRINGS = {
     zoom_helper: "Preklopi mini kartico na celotno kartico in nazaj",
     language: "Jezik",
     lang_auto: "Samodejno",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Samodejno (sonce)",
+    theme_day: "Dan",
+    theme_night: "Noč",
   },
   lv: {
     title: "Atkritumu izvešana",
@@ -1094,6 +1194,11 @@ const STRINGS = {
     zoom_helper: "Pārslēdz mini karti uz pilno karti un atpakaļ",
     language: "Valoda",
     lang_auto: "Automātiski",
+    illustration: "Animēta ilustrācija",
+    illustration_theme: "Ilustrācijas motīvs",
+    theme_auto: "Automātiski (saule)",
+    theme_day: "Diena",
+    theme_night: "Nakts",
   },
   el: {
     title: "Αποκομιδή απορριμμάτων",
@@ -1141,6 +1246,11 @@ const STRINGS = {
     zoom_helper: "Αλλάζει τη μίνι κάρτα στην πλήρη κάρτα και αντίστροφα",
     language: "Γλώσσα",
     lang_auto: "Αυτόματα",
+    illustration: "Κινούμενη εικονογράφηση",
+    illustration_theme: "Θέμα εικονογράφησης",
+    theme_auto: "Αυτόματα (ήλιος)",
+    theme_day: "Ημέρα",
+    theme_night: "Νύχτα",
   },
 };
 
@@ -1483,8 +1593,9 @@ const binSvg = (type, x, y, i, shape) => {
 };
 
 // The bins of the next collection (three at most), side by side; `shape` (bin_shape) sets their silhouette, the
-// state (tonight / today / '') the animation.
-const sceneSvg = (types, state, shape) => {
+// state (tonight / today / '') the animation. In the banner (`banner`), the hedge scene brings its own sky: no
+// rings, moon or stars, but a glow under the bins in the colour of the state.
+const binsSvg = (types, shape, banner) => {
   const list = types.slice(0, 3);
   const n = Math.max(1, list.length);
   const w = 120;
@@ -1492,16 +1603,111 @@ const sceneSvg = (types, state, shape) => {
   const start = (w - 44 - gap * (n - 1)) / 2;
   const scale = n === 3 ? 0.86 : 1;
   const bins = list.map((ty, i) => binSvg(ty, start + gap * i, 38, i, shape)).join("");
-  return `<svg class="scene ${state}" viewBox="0 0 120 112" role="img" aria-hidden="true">
-    <ellipse cx="60" cy="104" rx="${26 + 16 * (n - 1)}" ry="4" fill="#000" opacity=".12"/>
+  const rx = 26 + 16 * (n - 1);
+  const roll = `<g class="roll"><g transform="translate(${(60 * (1 - scale)).toFixed(1)} ${(104 * (1 - scale)).toFixed(1)}) scale(${scale})">${bins}</g></g>`;
+  if (banner) return `<ellipse class="glow" cx="60" cy="104" rx="${rx + 10}" ry="7"/><ellipse cx="60" cy="104" rx="${rx}" ry="4" fill="#000" opacity=".18"/>${roll}`;
+  return `<ellipse cx="60" cy="104" rx="${rx}" ry="4" fill="#000" opacity=".12"/>
     <circle class="ring" cx="60" cy="70" r="50" fill="none" stroke="var(--wc-active)" stroke-width="2"/>
     <circle class="ring r2" cx="60" cy="70" r="50" fill="none" stroke="var(--wc-active)" stroke-width="2"/>
     <path class="moon" d="M102 6a11 11 0 1 0 10 15 9 9 0 0 1-10-15z" fill="#ffca28"/>
     <path class="star" d="M84 10l1.2 2.6 2.8.4-2 2 .5 2.8-2.5-1.3-2.5 1.3.5-2.8-2-2 2.8-.4z" fill="#ffe082"/>
     <path class="star s2" d="M92 30l.9 1.9 2.1.3-1.5 1.5.4 2.1-1.9-1-1.9 1 .4-2.1-1.5-1.5 2.1-.3z" fill="#ffe082"/>
-    <g class="roll"><g transform="translate(${(60 * (1 - scale)).toFixed(1)} ${(104 * (1 - scale)).toFixed(1)}) scale(${scale})">${bins}</g></g>
+    ${roll}`;
+};
+
+const sceneSvg = (types, state, shape) =>
+  `<svg class="scene ${state}" viewBox="0 0 120 112" role="img" aria-hidden="true">
+    ${binsSvg(types, shape, false)}
+  </svg>`;
+
+// ---------------------------------------------------------------------------
+// Illustrated header: the bins of the next collection stand on the pavement in front of a hedge, under the sky
+// (sun by day, moon and stars by night), above a 10 px road strip running under the whole banner. The picture is
+// 200 × 80 at the right of the banner, faded in from its left edge where the title sits on the sky.
+// ---------------------------------------------------------------------------
+
+const HEDGE_STARS = [
+  [40, 8, 0.6],
+  [120, 6, 0.6],
+  [170, 12, 0.6],
+  [72, 16, 0.5],
+  [186, 4, 0.5],
+];
+
+// The bins' frame in the 200 × 80 picture: one bin is drawn a little larger than two or three.
+const BIN_FRAMES = {
+  1: { x: 80, y: 15.7, w: 110, h: 62.3, vb: "0 44 120 68" },
+  n: { x: 90.5, y: 10, w: 99.5, h: 68, vb: "0 30 120 82" },
+};
+
+// `uid` keeps the ids of each card's mask apart on a page with several cards.
+const hedgeSvg = (types, state, shape, uid) => {
+  const fr = types.length > 1 ? BIN_FRAMES.n : BIN_FRAMES[1];
+  const puffs = Array.from({ length: 22 }, (_, i) => `<circle class="h2" cx="${(i * 9.5).toFixed(1)}" cy="${30 + (i % 3) * 2}" r="${7 + (i % 2)}"/>`).join("");
+  const leaves = Array.from(
+    { length: 60 },
+    (_, i) => `<circle class="${i % 2 ? "h3" : "h1"}" cx="${((i * 13.7) % 200).toFixed(1)}" cy="${(38 + ((i * 7.3) % 36)).toFixed(1)}" r="${(1.4 + (i % 3) * 0.5).toFixed(1)}"/>`,
+  ).join("");
+  const stars = HEDGE_STARS.map(([x, y, r], i) => `<circle class="hd-star${i % 2 ? " tw" : ""}" cx="${x}" cy="${y}" r="${r}"/>`).join("");
+  return `<svg class="hedge" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="wc-fade-${uid}" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="34" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient>
+      <mask id="wc-mask-${uid}" maskUnits="userSpaceOnUse" x="-10" y="-10" width="220" height="100"><rect x="-10" y="-10" width="220" height="100" fill="url(#wc-fade-${uid})"/></mask>
+    </defs>
+    <g mask="url(#wc-mask-${uid})">
+      <g class="hd-day"><circle class="hd-sun" cx="150" cy="12" r="6"/></g>
+      <g class="hd-night">${stars}<circle class="hd-moon" cx="150" cy="12" r="4.5"/></g>
+      <rect class="h1" x="0" y="30" width="200" height="50" rx="10"/>${puffs}<g class="hd-leaves">${leaves}</g>
+      <rect class="hd-walk" x="0" y="72" width="200" height="8"/>
+      <svg class="scene ${state}" x="${fr.x}" y="${fr.y}" width="${fr.w}" height="${fr.h}" viewBox="${fr.vb}">${binsSvg(types, shape, true)}</svg>
+    </g>
   </svg>`;
 };
+
+// The banner's colours and animations, day and night.
+const BANNER_STYLE = `
+  .banner { position: relative; overflow: hidden; height: 90px; --wc-sky-text: #0d2a45; --wc-sky-muted: #3b5b78; color: var(--wc-sky-text);
+            background: linear-gradient(90deg, #f1f8ff 0%, #e2f1fd 34%, #b9def8 70%, #9fd0f3 100%); }
+  .banner.night { --wc-sky-text: #fff; --wc-sky-muted: rgba(255,255,255,.78);
+                  background: linear-gradient(90deg, #1b2f52 0%, #15284a 36%, #0f1f3d 72%, #0a1830 100%); }
+  .banner .hedge { position: absolute; right: 0; bottom: 10px; height: 80px; width: min(265px, 54%); overflow: hidden; }
+  .banner .road { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: #858c94; box-shadow: inset 0 1px 0 #6f767d; }
+  .banner .road::after { content: ""; position: absolute; left: 0; right: 0; top: calc(50% - .8px); height: 1.6px;
+                         background: repeating-linear-gradient(90deg, rgba(255,255,255,.85) 0 9px, transparent 9px 18px); }
+  .banner.night .road { background: #2c323b; box-shadow: inset 0 1px 0 #3a414b; }
+  .hedge .h1 { fill: #4f9a3a; } .hedge .h2 { fill: #5fae45; } .hedge .h3 { fill: #74c25a; } .hd-leaves circle { opacity: .85; }
+  .night .hedge .h1 { fill: #1e3d2a; } .night .hedge .h2 { fill: #24482f; } .night .hedge .h3 { fill: #2b5537; }
+  .hd-walk { fill: #c9c4ba; } .night .hd-walk { fill: #3a3f48; }
+  .hd-sun { fill: #ffd65a; } .hd-moon { fill: #f3eed2; } .hd-star { fill: #fff; opacity: .8; }
+  .hd-star.tw { animation: wc-twinkle 3.2s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+  .hd-night, .night .hd-day { display: none; }
+  .night .hd-night { display: inline; }
+  /* The state of the next collection: a glow under the bins (today: pulsing), in the state's colour. */
+  .hedge .glow { fill: var(--c, transparent); opacity: 0; transform-box: fill-box; transform-origin: center; }
+  .banner.active .hedge .glow, .banner.warn .hedge .glow { opacity: .32; }
+  .banner.active .hedge .glow { animation: wc-glow 1.8s ease-in-out infinite; }
+  .night .hedge .scene .bin { filter: brightness(.88); }
+  @keyframes wc-glow { 0%, 100% { opacity: .15; transform: scaleX(.85); } 50% { opacity: .45; transform: scaleX(1.05); } }
+  /* The text on the sky, left of the picture: the round icon (its colour is the state's), the title, the state. */
+  .htext { position: absolute; left: 12px; top: 6px; bottom: 16px; right: calc(min(265px, 54%) + 4px); display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .htext .titles { display: flex; flex-direction: column; gap: 2px; }
+  .banner .type-icon { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 22%, transparent); }
+  .banner .type-icon .icon { fill: var(--c); }
+  .banner.night .type-icon { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  .banner.night .type-icon .icon { fill: color-mix(in srgb, var(--c) 72%, #fff); }
+  .banner .name { font-weight: 500; }
+  .banner .sub { font-size: 13px; color: var(--wc-sky-muted); }
+  .banner.active .sub, .banner.warn .sub { font-weight: 500; color: color-mix(in srgb, var(--c) 62%, var(--wc-sky-text)); }
+  .banner.night.active .sub, .banner.night.warn .sub { color: color-mix(in srgb, var(--c) 55%, #fff); }
+  .banner .zoom { position: absolute; top: 6px; right: 6px; margin: 0; color: #10283f; background: rgba(255,255,255,.55); }
+  .banner.night .zoom { color: #fff; background: rgba(10,20,40,.45); }
+  .banner .hedge.clickable:focus-visible { outline: 2px solid var(--primary-color, var(--wc-accent)); outline-offset: -2px; }
+  /* The bins are in the banner: the picture beside the countdown gives way. */
+  .illustrated .hero .picture { display: none; }
+  @container (max-width: 200px) { .banner .hedge { display: none; } .htext { right: 36px; } }
+`;
+
+let _wcUid = 0;
 
 // ---------------------------------------------------------------------------
 // Styles (same language as the other juju35 cards)
@@ -1669,6 +1875,16 @@ const watchOutside = (card, handler) => {
   };
 };
 
+// Night picture: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
+const isNight = (hass, config) => {
+  const theme = config?.illustration_theme;
+  if (theme === "night") return true;
+  if (theme === "day") return false;
+  const sun = hass?.states?.["sun.sun"]?.state;
+  if (sun === "below_horizon" || sun === "above_horizon") return sun === "below_horizon";
+  return !!hass?.themes?.darkMode;
+};
+
 const sameDeps = (a, b) => !!a && a.length === b.length && a.every((d, i) => d === b[i]);
 const CAL_REFRESH_MS = 3600000;
 const DEFAULT_DAYS = 60;
@@ -1685,6 +1901,7 @@ class WasteBase extends HTMLElement {
     this._html = "";
     this._cal = {};
     this._calVersion = 0;
+    this._uid = ++_wcUid;
     this.shadowRoot.addEventListener("click", (ev) => this._onClick(ev));
     // No rewrite of the card between the press and the release: Home Assistant updates the card several times a
     // second, and a rewrite under the pointer replaces the element pressed, so that the click lands on the card itself
@@ -1741,6 +1958,8 @@ class WasteBase extends HTMLElement {
       this._today(),
       now.h >= this._tonightFrom(),
       Math.floor(Date.now() / CAL_REFRESH_MS),
+      h.states["sun.sun"]?.state,
+      h.themes?.darkMode,
       ...ids.map((id) => h.states[id]),
     ];
   }
@@ -1962,6 +2181,46 @@ class WasteBase extends HTMLElement {
     return "";
   }
 
+  _illustrated() {
+    return this._config.illustration !== false;
+  }
+
+  // The illustrated header (the classic one with `illustration: false`): the bins of the next collection in front
+  // of a hedge, the title and the state of the collection on the sky (`types`: the bins' names after it).
+  _banner(next, types) {
+    const c = this._config;
+    const days = next[0]?.days ?? null;
+    const cls = dayClass(days);
+    const due = this._due(next);
+    const loc = this._locale();
+    let sub = "";
+    if (!next.length) sub = this._t(this._loading() ? "loading" : "no_collection");
+    else {
+      sub = due === "tonight" ? this._t("put_out_tonight") : countdown(days, loc);
+      if (types) sub += ` · ${next.map((x) => x.type.name).join(", ")}`;
+    }
+    const bins = next.length ? next.map((x) => x.type) : [{ ...OTHER, name: "" }];
+    const hedge = hedgeSvg(bins, due, c.bin_shape, this._uid);
+    const scene = next.length
+      ? hedge.replace(
+          '<svg class="hedge"',
+          `<svg class="hedge clickable" role="button" tabindex="0" aria-label="${esc(next.map((x) => x.type.name).join(", "))}" data-entity="${esc(next[0].entity)}"`,
+        ).replace(' aria-hidden="true" focusable="false"', "")
+      : hedge;
+    return `
+      <div class="banner ${cls}${isNight(this._hass, c) ? " night" : ""}">
+        ${scene}<div class="road" aria-hidden="true"></div>
+        <div class="htext">
+          <div class="type-icon">${svgIcon("trash-can")}</div>
+          <div class="titles">
+            <div class="name">${esc(c.title || this._t("title"))}</div>
+            <div class="sub">${esc(sub)}</div>
+          </div>
+        </div>
+        ${this._zoomButton()}
+      </div>`;
+  }
+
   _header(next, sub) {
     const c = this._config;
     const days = next[0]?.days ?? null;
@@ -2091,9 +2350,10 @@ class WasteCard extends WasteBase {
     if (c.show_bins !== false) parts.push(this._bins(list));
     if (c.show_upcoming !== false) parts.push(this._upcoming(list));
     const sub = next.length ? `${this._t("next")} · ${cap(fmtDay(next[0].day, this._locale()))}` : "";
-    return `<style>${BASE_STYLE}${FULL_STYLE}</style>
-      <ha-card>
-        ${this._header(next, sub)}
+    const ill = this._illustrated();
+    return `<style>${BASE_STYLE}${FULL_STYLE}${ill ? BANNER_STYLE : ""}</style>
+      <ha-card${ill ? ' class="illustrated"' : ""}>
+        ${ill ? this._banner(next, true) : this._header(next, sub)}
         <div class="content">${parts.filter(Boolean).join("")}</div>
       </ha-card>`;
   }
@@ -2155,9 +2415,10 @@ class WasteMiniCard extends WasteCard {
     if (this._zoomed) return super._render();
     if (!entityConfs(this._hass, this._config).length) return this._errorCard("no_entities");
     const next = this._next(this._collections());
-    return `<style>${BASE_STYLE}${MINI_STYLE}</style>
-      <ha-card>
-        ${this._header(next, next.length ? this._t("next") : "")}
+    const ill = this._illustrated();
+    return `<style>${BASE_STYLE}${MINI_STYLE}${ill ? BANNER_STYLE : ""}</style>
+      <ha-card${ill ? ' class="illustrated"' : ""}>
+        ${ill ? this._banner(next, false) : this._header(next, next.length ? this._t("next") : "")}
         <div class="content">${this._hero(next)}</div>
       </ha-card>`;
   }
@@ -2213,6 +2474,7 @@ class WasteEditorBase extends HTMLElement {
     return [
       ["show_title", true],
       ["show_subtitle", true],
+      ["illustration", true],
     ];
   }
 
@@ -2244,6 +2506,10 @@ class WasteEditorBase extends HTMLElement {
         selector: { select: { mode: "dropdown", options: ["wheelie", "flat", "can", "cart"].map((v) => ({ value: v, label: tr(`bin_shape_${v}`) })) } },
       },
       { name: "tonight_from", selector: { number: { min: 0, max: 23, mode: "box", unit_of_measurement: "h" } } },
+      {
+        name: "illustration_theme",
+        selector: { select: { mode: "dropdown", options: ["auto", "day", "night"].map((v) => ({ value: v, label: tr(`theme_${v}`) })) } },
+      },
       ...this.constructor.extraFields(tr),
       { type: "expandable", name: "colors", title: tr("colors"), schema: COLOR_CATS.map((k) => ({ name: k, selector: { color_rgb: {} } })) },
       { type: "grid", name: "", schema: this.constructor.toggles.map(([name]) => ({ name, selector: { boolean: {} } })) },
@@ -2279,7 +2545,7 @@ class WasteEditorBase extends HTMLElement {
           }
           config.colors = colors;
         }
-        const defaults = { ...Object.fromEntries(toggles), type_names: "source", bin_shape: "wheelie", tonight_from: 0, days: DEFAULT_DAYS, max_items: DEFAULT_ITEMS, collapsed: [], colors: {} };
+        const defaults = { ...Object.fromEntries(toggles), type_names: "source", bin_shape: "wheelie", illustration_theme: "auto", tonight_from: 0, days: DEFAULT_DAYS, max_items: DEFAULT_ITEMS, collapsed: [], colors: {} };
         for (const [k, v] of Object.entries(config)) {
           // Keep the YAML minimal: drop empty values and options left at their default.
           if (v === "" || v === undefined || v === null || (Array.isArray(v) && !v.length && k === "entities") || (k in defaults && JSON.stringify(v) === JSON.stringify(defaults[k])))
@@ -2290,7 +2556,7 @@ class WasteEditorBase extends HTMLElement {
       });
       this.appendChild(this._form);
     }
-    const data = { type_names: "source", bin_shape: "wheelie", tonight_from: 0, days: DEFAULT_DAYS, max_items: DEFAULT_ITEMS, collapsed: [], ...this._config };
+    const data = { type_names: "source", bin_shape: "wheelie", illustration_theme: "auto", tonight_from: 0, days: DEFAULT_DAYS, max_items: DEFAULT_ITEMS, collapsed: [], ...this._config };
     data.entities = entityConfs(this._hass, this._config).map((e) => e.entity);
     for (const [name, def] of toggles) if (data[name] === undefined) data[name] = def;
     // The color picker needs [r, g, b]; feed it the hex colors kept in the config (others stay unset = category default).

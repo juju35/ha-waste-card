@@ -34,8 +34,10 @@ test("the next collection, with its bins to put out tonight", () => {
   assert.match(h, /<div class="when">Tomorrow<\/div>/);
   assert.match(h, /Put out tonight/);
   assert.match(h, /class="scene tonight"/);
-  assert.match(h, /<span class="chip clickable warn"[^>]*data-entity="sensor\.waste_collection"/);
-  assert.match(h, /Next collection · Sat, Nov 14/);
+  // The illustrated header: the state's colour, the bins in front of the hedge, the state and the bins' names.
+  assert.match(h, /<div class="banner warn">/);
+  assert.match(h, /<svg class="hedge clickable"[^>]*data-entity="sensor\.waste_collection"/);
+  assert.match(h, /<div class="sub">Put out tonight · Glass, Recycling<\/div>/);
   // One tile per bin type, the date sensor included.
   assert.equal((h.match(/class="tile clickable/g) || []).length, 7);
   assert.match(h, /Bulky waste<\/div><div class="v">In 25 days/);
@@ -57,7 +59,22 @@ test("a collection today", () => {
   const { html } = newCard({}, { hass: makeHass({ ...states, ...today }) });
   assert.match(html(), /Collection today/);
   assert.match(html(), /class="scene today"/);
-  assert.match(html(), /<span class="chip clickable active"/);
+  assert.match(html(), /<div class="banner active">/);
+});
+
+test("illustrated header: night theme, unique ids, classic header with illustration: false", () => {
+  const night = makeHass({ ...states, "sun.sun": { state: "below_horizon", attributes: {} } });
+  const a = newCard({}, { hass: night });
+  assert.match(a.html(), /<div class="banner warn night">/);
+  const b = newCard({ illustration_theme: "day" }, { hass: night, wc: a.wc });
+  assert.match(b.html(), /<div class="banner warn">/);
+  const id = (h) => h.match(/id="(wc-mask-\d+)"/)[1];
+  assert.notEqual(id(a.html()), id(b.html()));
+  assert.match(newCard({}, { hass: makeHass(states, { themes: { darkMode: true } }) }).html(), /banner warn night/);
+  const { html } = newCard({ illustration: false });
+  assert.doesNotMatch(html(), /class="banner/);
+  assert.match(html(), /<span class="chip clickable warn"[^>]*data-entity="sensor\.waste_collection"/);
+  assert.match(html(), /Next collection · Sat, Nov 14/);
 });
 
 test("past collections are left out, the same collection from two sources is shown once", () => {
