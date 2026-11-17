@@ -1,7 +1,8 @@
-// The illustrated header in Chromium (skipped without it): the status pill shows its whole label from 245 to 500 px,
-// right after the title whenever it fits there beside a title kept to four characters (on the title row at 460 and
-// 500 px with the default title), else on its own line under the subtitle, next to a readable title; the mini card's expand / collapse button is a 24 px round button 5 px from the top
-// right corner of the banner.
+// The status pill in Chromium (skipped without it), in en, fr, de, hu, el and ru, from 190 to 500 px, on the full
+// card, the mini card (compact and expanded) and the classic header: on the title row only with the whole title
+// beside it; else on its own line under the title (or the subtitle), its label whole; or its dot alone (always at
+// 190 px). Nothing below the top of the banner's road strip or out of the banner. The mini card's expand / collapse
+// button is a 24 px round button 5 px from the top right corner of the banner.
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
@@ -18,11 +19,11 @@ const browser = await chromium?.launch(process.env.CHROMIUM_PATH ? { executableP
 const HA_CARD = `customElements.define("ha-card", class extends HTMLElement { constructor() { super();
   this.attachShadow({ mode: "open" }).innerHTML = "<style>:host{display:block;border:1px solid #ddd;overflow:hidden}</style><slot></slot>"; } });`;
 
-test("status pill shows its whole label next to a readable title; the zoom button sits at the top right", { skip: !browser && "no Chromium" }, async () => {
+test("status pill: whole title beside it, whole label or dot alone, inside the banner; zoom button at the top right", { skip: !browser && "no Chromium" }, async () => {
   const page = await browser.newPage({ viewport: { width: 1000, height: 800 } });
   try {
     await page.clock.setFixedTime(new Date(NOW));
-    await page.setContent('<!doctype html><body style="margin:0;font-family:Arial,sans-serif"></body>');
+    await page.setContent('<!doctype html><body style="margin:0;font-family:Roboto,Arial,sans-serif"></body>');
     await page.addScriptTag({ content: HA_CARD });
     await page.addScriptTag({ content: source });
     const failures = await page.evaluate(
@@ -31,49 +32,59 @@ test("status pill shows its whole label next to a readable title; the zoom butto
           const step = () => (n-- > 0 ? requestAnimationFrame(step) : r());
           step();
         });
-        const hass = { states, entities, language: "en", locale: { language: "en" }, themes: {}, callApi: async () => [] };
         const out = [];
-        for (const width of [245, 300, 400, 460, 500]) {
-          for (const [type, zoom] of [["waste-card", false], ["waste-mini-card", false], ["waste-mini-card", true]]) {
-            for (const title of [undefined, "A very long title for the waste collection of the street"]) {
-              document.body.innerHTML = "";
-              const box = document.body.appendChild(document.createElement("div"));
-              box.style.width = `${width}px`;
-              const card = box.appendChild(document.createElement(type));
-              card.setConfig({ type: `custom:${type}`, entities: ["sensor.waste_collection", "sensor.bulky_waste"], ...(title ? { title } : {}) });
-              card.hass = hass;
-              await frames(2);
-              const r = card.shadowRoot;
-              if (zoom) r.querySelector(".zoom").dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, detail: 1 }));
-              await frames(4);
-              const tag = `${type}${zoom ? " zoomed" : ""} ${width}px${title ? " long title" : ""}`;
-              const chip = r.querySelector(".banner .chip");
-              if (!chip) {
-                out.push(`${tag}: no pill`);
-                continue;
-              }
-              const text = chip.querySelector(".chip-text");
-              if (text.scrollWidth > text.clientWidth + 0.5 || text.clientWidth === 0) out.push(`${tag}: label cut`);
-              const nb = r.querySelector(".banner .name").getBoundingClientRect();
-              if (nb.width < 24) out.push(`${tag}: title ${Math.round(nb.width)}px`);
-              const cb = chip.getBoundingClientRect();
-              const onRow = Math.abs(cb.top + cb.height / 2 - (nb.top + nb.height / 2)) < 3;
-              // Under the subtitle only when it cannot sit beside the title cut down to four characters.
-              const name = r.querySelector(".banner .name");
-              const ctx = document.createElement("canvas").getContext("2d");
-              const cs = getComputedStyle(name);
-              ctx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-              const four = Math.min(name.scrollWidth, ctx.measureText(`${name.textContent.trim().slice(0, 4)}…`).width);
-              const room = r.querySelector(".banner .htext").getBoundingClientRect().right - nb.left;
-              if (!onRow && four + 8 + cb.width <= room - 1) out.push(`${tag}: pill under the subtitle although it fits beside the title`);
-              if (!onRow && !title && width >= 460) out.push(`${tag}: pill not beside the title`);
-              const banner = r.querySelector(".banner").getBoundingClientRect();
-              if (cb.right > banner.right - 4 || cb.bottom > banner.bottom - 10) out.push(`${tag}: pill out of the banner`);
-              if (type === "waste-mini-card") {
-                const zb = r.querySelector(".banner .zoom")?.getBoundingClientRect();
-                if (!zb) out.push(`${tag}: no zoom button`);
-                else if (Math.round(zb.width) !== 24 || Math.round(zb.height) !== 24 || Math.round(zb.top - banner.top) !== 5 || Math.round(banner.right - zb.right) !== 5)
-                  out.push(`${tag}: zoom button ${Math.round(zb.width)}x${Math.round(zb.height)} at ${Math.round(zb.top - banner.top)}/${Math.round(banner.right - zb.right)}`);
+        for (const language of ["en", "fr", "de", "hu", "el", "ru"]) {
+          const hass = { states, entities, language, locale: { language }, themes: {}, callApi: async () => [] };
+          for (const width of [190, 245, 300, 400, 460, 500]) {
+            for (const [type, zoom, ill] of [["waste-card", false, true], ["waste-mini-card", false, true], ["waste-mini-card", true, true], ["waste-card", false, false], ["waste-mini-card", false, false]]) {
+              for (const title of [undefined, "A very long title for the waste collection of the street"]) {
+                document.body.innerHTML = "";
+                const box = document.body.appendChild(document.createElement("div"));
+                box.style.width = `${width}px`;
+                const card = box.appendChild(document.createElement(type));
+                card.setConfig({ type: `custom:${type}`, entities: ["sensor.waste_collection", "sensor.bulky_waste"], ...(ill ? {} : { illustration: false }), ...(title ? { title } : {}) });
+                card.hass = hass;
+                await frames(2);
+                const r = card.shadowRoot;
+                if (zoom) r.querySelector(".zoom").dispatchEvent(new MouseEvent("click", { bubbles: true, composed: true, detail: 1 }));
+                await frames(4);
+                const tag = `${language} ${type}${zoom ? " zoomed" : ""}${ill ? "" : " classic"} ${width}px${title ? " long title" : ""}`;
+                const head = r.querySelector(ill ? ".banner" : ".header");
+                const chip = head?.querySelector(".chip");
+                if (!chip) {
+                  out.push(`${tag}: no pill`);
+                  continue;
+                }
+                const name = head.querySelector(".name");
+                const text = chip.querySelector(".chip-text");
+                const dotOnly = getComputedStyle(text).display === "none";
+                if (width <= 200 && !dotOnly) out.push(`${tag}: label shown at ${width}px`);
+                if (!dotOnly && (text.scrollWidth > text.clientWidth + 0.5 || text.clientWidth === 0)) out.push(`${tag}: label cut`);
+                const nb = name.getBoundingClientRect();
+                const cb = chip.getBoundingClientRect();
+                const onRow = Math.abs(cb.top + cb.height / 2 - (nb.top + nb.height / 2)) < 3;
+                if (onRow && !dotOnly && name.scrollWidth > name.clientWidth + 0.5) out.push(`${tag}: title cut beside the pill`);
+                if (!onRow && cb.top < nb.bottom - 0.5) out.push(`${tag}: pill over the title`);
+                if (!onRow && dotOnly) out.push(`${tag}: dot alone off the title row`);
+                // Under the title only when the whole title and the whole label do not fit beside each other.
+                const row = name.parentElement.getBoundingClientRect();
+                if (!onRow && name.scrollWidth + 8 + cb.width <= row.right - nb.left - 1 && width > 200) out.push(`${tag}: pill under the title although it fits beside it`);
+                const hb = head.getBoundingClientRect();
+                if (cb.right > hb.right + 0.5 || cb.left < hb.left - 0.5) out.push(`${tag}: pill out of the header`);
+                if (ill) {
+                  const floor = head.querySelector(".road").getBoundingClientRect().top;
+                  for (const [what, el] of [["title", name], ["pill", chip]]) {
+                    const b = el.getBoundingClientRect();
+                    if (b.bottom > floor + 0.5) out.push(`${tag}: ${what} over the road strip`);
+                    if (b.top < hb.top - 0.5) out.push(`${tag}: ${what} above the banner`);
+                  }
+                  if (type === "waste-mini-card") {
+                    const zb = head.querySelector(".zoom")?.getBoundingClientRect();
+                    if (!zb) out.push(`${tag}: no zoom button`);
+                    else if (Math.round(zb.width) !== 24 || Math.round(zb.height) !== 24 || Math.round(zb.top - hb.top) !== 5 || Math.round(hb.right - zb.right) !== 5)
+                      out.push(`${tag}: zoom button ${Math.round(zb.width)}x${Math.round(zb.height)} at ${Math.round(zb.top - hb.top)}/${Math.round(hb.right - zb.right)}`);
+                  }
+                }
               }
             }
           }
