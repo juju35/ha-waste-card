@@ -31,15 +31,22 @@ const tapDoc = (wc, ev) => {
 test("the next collection, with its bins to put out tonight", () => {
   const { html } = newCard();
   const h = html();
-  assert.match(h, /<div class="when">Tomorrow<\/div>/);
-  assert.match(h, /Put out tonight/);
+  // The hero: the bins to put out, big, and the date; the countdown is only in the header pill.
+  assert.match(h, /<div class="types big clickable"[^>]*><span class="type"[^>]*>.*?<span>Glass<\/span><\/span><span class="type"[^>]*>.*?<span>Recycling<\/span>/);
+  assert.match(h, /Saturday, November 14/);
+  // Only in the pill (title, aria-label and text), and in the line shown in its place when it keeps only its dot.
+  assert.equal((h.match(/Put out tonight/g) || []).length, 4);
+  assert.match(h, /class="alert-line pill-echo warn">.*Put out tonight/);
+  assert.match(h, /\.illustrated \.alert-line\.pill-echo \{ display: none; \}/);
   assert.match(h, /class="scene tonight"/);
   // The illustrated header: the state's colour, the bins in front of the hedge, the state and the bins' names.
   assert.match(h, /<div class="banner warn">/);
   assert.match(h, /<svg class="hedge clickable"[^>]*data-entity="sensor\.waste_collection"/);
-  // The state is the status pill right after the title, the bins' names under it.
+  // The state is the status pill right after the title; no subtitle repeating the bins of the hero.
   assert.match(h, /<div class="trow"><div class="name">[^<]*<\/div><span class="chip clickable" role="button" tabindex="0" data-entity="sensor\.waste_collection" title="Put out tonight"/);
-  assert.match(h, /<div class="sub">Glass, Recycling<\/div>/);
+  assert.doesNotMatch(h, /<div class="sub">Glass, Recycling<\/div>/);
+  // The classic header's chip only counts the days: the evening highlight stays as a line there.
+  assert.match(newCard({ illustration: false }).html(), /class="alert-line warn">.*Put out tonight/);
   // One tile per bin type, the date sensor included.
   assert.equal((h.match(/class="tile clickable/g) || []).length, 7);
   assert.match(h, /Bulky waste<\/div><div class="v">In 25 days/);
@@ -59,7 +66,8 @@ test("tonight_from: the day before is highlighted only from that hour", () => {
 
 test("a collection today", () => {
   const { html } = newCard({}, { hass: makeHass({ ...states, ...today }) });
-  assert.match(html(), /Collection today/);
+  assert.match(html(), /class="chip clickable"[^>]*title="Today"/);
+  assert.match(newCard({ illustration: false }, { hass: makeHass({ ...states, ...today }) }).html(), /Collection today/);
   assert.match(html(), /class="scene today"/);
   assert.match(html(), /<div class="banner active">/);
 });
@@ -293,7 +301,7 @@ test("the full card is translated, dates and countdown included", () => {
   const { html } = newCard({ language: "fr" });
   assert.match(html(), /Collecte des déchets/);
   assert.match(html(), /À sortir ce soir/);
-  assert.match(html(), /<div class="when">Demain<\/div>/);
+  assert.match(newCard({ language: "fr", illustration: false }).html(), /title="Demain"/);
   assert.match(html(), /Samedi 14 novembre/);
 });
 

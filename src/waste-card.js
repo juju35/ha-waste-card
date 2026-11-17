@@ -1724,6 +1724,8 @@ const BANNER_STYLE = `
   .banner .hedge.clickable:focus-visible { outline: 2px solid var(--primary-color, var(--wc-accent)); outline-offset: -2px; }
   /* The bins are in the banner: the picture beside the countdown gives way. */
   .illustrated .hero .picture { display: none; }
+  .illustrated .alert-line.pill-echo { display: none; }
+  @container (max-width: 230px) { .illustrated .alert-line.pill-echo { display: flex; } }
   @container (max-width: 200px) { .banner .hedge { display: none; } .htext { right: 36px; } }
 `;
 
@@ -1768,7 +1770,6 @@ const BASE_STYLE = `
   .picture { flex: none; display: flex; align-items: center; justify-content: center; }
   .picture svg { width: 100%; height: 100%; }
   .info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
-  .when { font-size: 26px; font-weight: 400; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .line { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--secondary-text-color); min-width: 0; }
   .line span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .line .icon { width: 16px; height: 16px; --mdc-icon-size: 16px; }
@@ -1782,6 +1783,10 @@ const BASE_STYLE = `
   .type span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   /* The type's color, drawn toward the text color so that dark bins (grey, brown) stay readable in a dark theme. */
   .type .icon { width: 14px; height: 14px; --mdc-icon-size: 14px; color: color-mix(in srgb, var(--tc) 72%, var(--primary-text-color)); }
+  /* The hero's big line: the bins to put out, as large chips. */
+  .types.big { gap: 6px; }
+  .types.big .type { font-size: 18px; line-height: 1.25; gap: 6px; padding: 4px 12px 4px 8px; border-radius: 16px; }
+  .types.big .type .icon { width: 22px; height: 22px; --mdc-icon-size: 22px; }
   .zoom { all: unset; flex: none; cursor: pointer; width: 24px; height: 24px; margin: -4px -4px -4px 0; border-radius: 50%;
           display: grid; place-items: center; color: var(--secondary-text-color); }
   .zoom .icon { width: 16px; height: 16px; }
@@ -1829,7 +1834,8 @@ const FULL_STYLE = `
   @container (max-width: 300px) {
     .picture { width: 72px; height: 66px; }
     .hero { gap: 10px; }
-    .when { font-size: 22px; }
+    .types.big .type { font-size: 16px; }
+    .types.big .type .icon { width: 20px; height: 20px; --mdc-icon-size: 20px; }
     .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tile { padding: 6px 8px; }
     .tile .badge { display: none; }
@@ -1839,7 +1845,8 @@ const FULL_STYLE = `
   }
   @container (max-width: 200px) {
     .picture { width: 56px; height: 52px; }
-    .when { font-size: 18px; }
+    .types.big .type { font-size: 14px; padding: 3px 10px 3px 6px; }
+    .types.big .type .icon { width: 18px; height: 18px; --mdc-icon-size: 18px; }
   }
 `;
 
@@ -1848,7 +1855,8 @@ const MINI_STYLE = `
   .content { padding: 8px 12px 12px; }
   .hero { display: flex; align-items: center; gap: 12px; }
   .picture { width: 72px; height: 66px; }
-  .when { font-size: 20px; }
+  .types.big .type { font-size: 16px; }
+  .types.big .type .icon { width: 20px; height: 20px; --mdc-icon-size: 20px; }
   @container (max-width: 200px) { .picture { display: none; } }
 `;
 
@@ -2236,20 +2244,19 @@ class WasteBase extends HTMLElement {
   }
 
   // The illustrated header (the classic one with `illustration: false`): the bins of the next collection in front
-  // of a hedge, the title and the state of the collection on the sky (`types`: the bins' names after it).
-  _banner(next, types) {
+  // of a hedge, the title and the state of the collection on the sky (the bins' names are the hero's big line).
+  _banner(next) {
     const c = this._config;
     const days = next[0]?.days ?? null;
     const cls = dayClass(days);
     const due = this._due(next);
     const loc = this._locale();
     // The status pill right after the title (on its own line under the subtitle when it does not fit there): the
-    // countdown ("Tomorrow", "Put out tonight"), in the colour of the header icon; the subtitle names the bins.
+    // countdown ("Tomorrow", "Put out tonight"), in the colour of the header icon.
     const text = !next.length ? this._t(this._loading() ? "loading" : "no_collection") : due === "tonight" ? this._t("put_out_tonight") : countdown(days, loc);
     const chip = `<span class="chip${next.length ? ` clickable" role="button" tabindex="0" data-entity="${esc(next[0].entity)}"` : '"'} title="${esc(text)}" aria-label="${esc(
       text,
     )}"><span class="dot"></span><span class="chip-text">${esc(text)}</span></span>`;
-    const sub = types && next.length ? next.map((x) => x.type.name).join(", ") : "";
     const bins = next.length ? next.map((x) => x.type) : [{ ...OTHER, name: "" }];
     const hedge = hedgeSvg(bins, due, c.bin_shape, this._uid);
     const scene = next.length
@@ -2265,7 +2272,6 @@ class WasteBase extends HTMLElement {
           <div class="type-icon">${svgIcon("trash-can")}</div>
           <div class="titles">
             <div class="trow"><div class="name">${esc(c.title || this._t("title"))}</div>${chip}</div>
-            ${sub ? `<div class="sub">${esc(sub)}</div>` : ""}
           </div>
         </div>
         ${this._zoomButton()}
@@ -2309,9 +2315,16 @@ class WasteBase extends HTMLElement {
     }
     const due = this._due(next);
     const cls = dayClass(next[0].days);
-    const alert = due
-      ? `<div class="alert-line ${cls}">${svgIcon(due === "today" ? "truck" : "weather-night")}<span>${esc(this._t(due === "today" ? "collection_today" : "put_out_tonight"))}</span></div>`
-      : "";
+    // The countdown ("Tomorrow", "Put out tonight", "Today") is the header's status pill: the hero does not repeat
+    // it. Its big line is the bins to put out, then the date. The classic header's chip only counts the days, so
+    // there the evening / collection-day highlight stays as a line.
+    // On a card so narrow that the pill keeps only its dot (≤ 230 px), its text comes back here (.pill-echo).
+    const icon = due === "today" ? "truck" : due === "tonight" ? "weather-night" : "calendar-clock";
+    const alert = !this._illustrated()
+      ? due
+        ? `<div class="alert-line ${cls}">${svgIcon(icon)}<span>${esc(this._t(due === "today" ? "collection_today" : "put_out_tonight"))}</span></div>`
+        : ""
+      : `<div class="alert-line pill-echo ${cls}">${svgIcon(icon)}<span>${esc(due === "tonight" ? this._t("put_out_tonight") : countdown(next[0].days, loc))}</span></div>`;
     return `<div class="hero">
         <div class="picture clickable" role="button" tabindex="0" aria-label="${esc(next.map((c) => c.type.name).join(", "))}" data-entity="${esc(next[0].entity)}">${sceneSvg(
           next.map((c) => c.type),
@@ -2319,9 +2332,8 @@ class WasteBase extends HTMLElement {
           this._config.bin_shape,
         )}</div>
         <div class="info">
-          <div class="when">${esc(countdown(next[0].days, loc))}</div>
+          <div class="types big clickable" role="button" tabindex="0" data-entity="${esc(next[0].entity)}">${next.map((c) => this._typeChip(c.type)).join("")}</div>
           ${alert}
-          <div class="types">${next.map((c) => this._typeChip(c.type)).join("")}</div>
           <div class="line">${svgIcon("calendar")}<span>${esc(cap(fmtDay(next[0].day, loc, true)))}</span></div>
         </div>
       </div>`;
@@ -2404,7 +2416,7 @@ class WasteCard extends WasteBase {
     const ill = this._illustrated();
     return `<style>${BASE_STYLE}${FULL_STYLE}${ill ? BANNER_STYLE : ""}</style>
       <ha-card${ill ? ' class="illustrated"' : ""}>
-        ${ill ? this._banner(next, true) : this._header(next, sub)}
+        ${ill ? this._banner(next) : this._header(next, sub)}
         <div class="content">${parts.filter(Boolean).join("")}</div>
       </ha-card>`;
   }
@@ -2469,7 +2481,7 @@ class WasteMiniCard extends WasteCard {
     const ill = this._illustrated();
     return `<style>${BASE_STYLE}${MINI_STYLE}${ill ? BANNER_STYLE : ""}</style>
       <ha-card${ill ? ' class="illustrated"' : ""}>
-        ${ill ? this._banner(next, false) : this._header(next, next.length ? this._t("next") : "")}
+        ${ill ? this._banner(next) : this._header(next, next.length ? this._t("next") : "")}
         <div class="content">${this._hero(next)}</div>
       </ha-card>`;
   }
