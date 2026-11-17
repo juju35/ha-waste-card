@@ -1670,7 +1670,10 @@ const BANNER_STYLE = `
             background: linear-gradient(90deg, #f1f8ff 0%, #e2f1fd 34%, #b9def8 70%, #9fd0f3 100%); }
   .banner.night { --wc-sky-text: #fff; --wc-sky-muted: rgba(255,255,255,.78);
                   background: linear-gradient(90deg, #1b2f52 0%, #15284a 36%, #0f1f3d 72%, #0a1830 100%); }
-  .banner .hedge { position: absolute; right: 0; bottom: 10px; height: 80px; width: min(265px, 54%); overflow: hidden; }
+  /* The picture's width: up to 265 px, but from 200 px on it leaves the title row 260 px, so that the title keeps a
+     few words beside its status pill. */
+  .banner { --wc-art-w: min(54%, clamp(200px, 100cqw - 260px, 265px)); }
+  .banner .hedge { position: absolute; right: 0; bottom: 10px; height: 80px; width: var(--wc-art-w); overflow: hidden; }
   .banner .road { position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: #858c94; box-shadow: inset 0 1px 0 #6f767d; }
   .banner .road::after { content: ""; position: absolute; left: 0; right: 0; top: calc(50% - .8px); height: 1.6px;
                          background: repeating-linear-gradient(90deg, rgba(255,255,255,.85) 0 9px, transparent 9px 18px); }
@@ -1689,7 +1692,7 @@ const BANNER_STYLE = `
   .night .hedge .scene .bin { filter: brightness(.88); }
   @keyframes wc-glow { 0%, 100% { opacity: .15; transform: scaleX(.85); } 50% { opacity: .45; transform: scaleX(1.05); } }
   /* The text on the sky, left of the picture: the round icon (its colour is the state's), the title, the state. */
-  .htext { position: absolute; left: 12px; top: 6px; bottom: 16px; right: calc(min(265px, 54%) + 4px); display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .htext { position: absolute; left: 12px; top: 6px; bottom: 16px; right: calc(var(--wc-art-w) + 4px); display: flex; align-items: center; gap: 10px; min-width: 0; }
   .htext .titles { display: flex; flex-direction: column; gap: 2px; }
   .banner .type-icon { background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 22%, transparent); }
   .banner .type-icon .icon { fill: var(--c); }
@@ -1698,23 +1701,19 @@ const BANNER_STYLE = `
   .banner .name { font-weight: 500; }
   .banner .sub { font-size: 13px; color: var(--wc-sky-muted); }
   :host([hide-subtitle]) .banner .sub, :host([hide-title]) .trow .name { display: none; }
-  /* Status pill right after the title, on a frosted tint of the icon's colour; the title is cut first (about four
-     characters kept). When it does not fit there (measured by the card, or a narrow card) it goes on its own line
-     under the subtitle, where it may run over the left of the scene. */
+  /* Status pill right after the title, on a frosted tint of the icon's colour, with its whole label; the title is cut
+     first (four characters kept). When it does not fit there (measured by the card, see _fitPill) it goes on its own
+     line under the subtitle, where it may run over the left of the scene. */
   .htext .titles { min-width: 0; }
   .trow { display: flex; align-items: center; gap: 8px; min-width: 0; }
   .trow .name { flex: 0 100 auto; min-width: 4ch; }
-  .banner .chip { max-width: 51%; line-height: 16px; background: color-mix(in srgb, var(--c, var(--wc-ok)) 18%, rgba(255,255,255,.78));
+  .banner .chip { flex: none; max-width: none; line-height: 16px; background: color-mix(in srgb, var(--c, var(--wc-ok)) 18%, rgba(255,255,255,.78));
                   color: color-mix(in srgb, var(--c, var(--wc-ok)) 45%, #0d2a45); }
   .banner.night .chip { background: color-mix(in srgb, var(--c, var(--wc-ok)) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c, var(--wc-ok)) 35%, #ffffff); }
   .banner .chip .dot { width: 7px; height: 7px; }
   .banner[data-wrap] .titles { gap: 1px; }
   .banner[data-wrap] .trow { display: contents; }
   .banner[data-wrap] .chip { order: 9; align-self: flex-start; max-width: calc(100cqw - 76px); margin-top: 2px; }
-  @container (max-width: 260px) {
-    .banner .trow { display: contents; }
-    .banner .chip { order: 9; align-self: flex-start; max-width: calc(100cqw - 76px); margin-top: 2px; }
-  }
   /* The mini card's expand / collapse button: 24 px, frosted, 5 px from the banner's top right corner. */
   .banner .zoom { position: absolute; top: 5px; right: 5px; z-index: 2; margin: 0; color: #33506b; background: rgba(255,255,255,.55);
                   box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }
@@ -1862,6 +1861,16 @@ const MINI_STYLE = `
 
 // Element names of Home Assistant dialogs (more-info opened from the card, among others).
 const DIALOG_TAGS = new Set(["HA-MORE-INFO-DIALOG", "HA-DIALOG", "DIALOG"]);
+// The width of an element's first four characters and an ellipsis, in its own font: the least a cut title keeps.
+let fourCtx;
+const fourChars = (el) => {
+  const cs = getComputedStyle(el);
+  fourCtx ??= document.createElement("canvas").getContext?.("2d");
+  if (!fourCtx) return 0;
+  fourCtx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+  return fourCtx.measureText(`${[...el.textContent.trim()].slice(0, 4).join("")}\u2026`).width;
+};
+
 const isOutside = (card, ev) => {
   const path = ev.composedPath();
   return !path.includes(card) && !path.some((n) => DIALOG_TAGS.has(n.tagName));
@@ -2082,20 +2091,20 @@ class WasteBase extends HTMLElement {
     }
   }
 
-  // The banner's status pill goes on its own line under the subtitle when it is cut next to the title. Fractional
-  // widths: scrollWidth / clientWidth are rounded and miss a label cut by less than a pixel.
+  // The banner's status pill goes right after the title when its whole label fits there beside a title cut down to
+  // four characters (the title's min-width); otherwise it takes a line of its own under the subtitle. Measured (in
+  // fractional pixels), so that a short title keeps its pill beside it whatever room the picture leaves.
   _fitPill() {
     const banner = this.shadowRoot.querySelector?.(".banner");
-    const chip = banner?.querySelector?.(".trow .chip");
+    const chip = banner?.querySelector?.(".trow > .chip");
     if (!chip?.getBoundingClientRect) return;
     banner.removeAttribute("data-wrap");
-    const have = chip.getBoundingClientRect().width;
-    chip.style.maxWidth = "none";
-    chip.style.flex = "none";
-    const need = chip.getBoundingClientRect().width;
-    chip.style.maxWidth = "";
-    chip.style.flex = "";
-    if (need > have + 0.01) banner.setAttribute("data-wrap", "");
+    const row = chip.parentElement;
+    const name = row.querySelector(".name");
+    const shown = name && getComputedStyle(name).display !== "none";
+    const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+    const title = shown ? Math.min(name.scrollWidth, Math.max(parseFloat(getComputedStyle(name).minWidth) || 0, fourChars(name))) + gap : 0;
+    if (title + chip.getBoundingClientRect().width > row.getBoundingClientRect().width + 0.5) banner.setAttribute("data-wrap", "");
   }
 
   // The focused element (keyboard user), found again after a re-render by its data attributes.
