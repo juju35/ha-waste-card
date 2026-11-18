@@ -73,7 +73,10 @@ test("a collection today", () => {
 });
 
 test("illustrated header: night theme, unique ids, classic header with illustration: false", () => {
-  const night = makeHass({ ...states, "sun.sun": { state: "below_horizon", attributes: {} } });
+  // A light theme keeps the day picture after sunset.
+  const down = (darkMode) => makeHass({ ...states, "sun.sun": { state: "below_horizon", attributes: {} } }, { themes: { darkMode } });
+  assert.match(newCard({}, { hass: down(false) }).html(), /<div class="banner warn">/);
+  const night = down(true);
   const a = newCard({}, { hass: night });
   assert.match(a.html(), /<div class="banner warn night">/);
   const b = newCard({ illustration_theme: "day" }, { hass: night, wc: a.wc });
