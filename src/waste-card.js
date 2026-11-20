@@ -1470,7 +1470,8 @@ const autoEntities = (hass) => {
         .map((e) => e.entity_id)
         .sort(),
     );
-  return [...AUTO.get(reg)];
+  // Shared, read-only: callers map it or copy it, so no copy at each state change.
+  return AUTO.get(reg);
 };
 const isWcs = (hass, id) => hass?.entities?.[id]?.platform === "waste_collection_schedule";
 
@@ -2380,7 +2381,7 @@ class WasteCard extends WasteBase {
 
   static getStubConfig(hass) {
     const ids = autoEntities(hass);
-    return ids.length ? { entities: ids } : {};
+    return ids.length ? { entities: [...ids] } : {};
   }
 
   getCardSize() {
