@@ -204,6 +204,22 @@ test("without entities: the Waste Collection Schedule ones, or a message", () =>
   assert.deepEqual(JSON.parse(JSON.stringify(wc.WasteCard.getStubConfig(makeHass()))), { entities: ["calendar.waste_collection", "sensor.waste_collection"] });
 });
 
+test("stub configuration without Waste Collection Schedule: a waste-like calendar or date sensor, else a calendar", () => {
+  const wc = load();
+  const st = (entity_id, attributes = {}) => ({ entity_id, state: "2026-11-21", attributes });
+  const stub = (list) => JSON.parse(JSON.stringify(wc.WasteCard.getStubConfig({ entities: {}, states: Object.fromEntries(list.map((s) => [s.entity_id, s])) })));
+  assert.deepEqual(stub([st("calendar.holidays"), st("calendar.poubelles"), st("sensor.next_bin", { device_class: "date" })]), { entities: ["calendar.poubelles"] });
+  assert.deepEqual(stub([st("calendar.holidays"), st("sensor.collecte", { device_class: "date", friendly_name: "Collecte des déchets" })]), { entities: ["sensor.collecte"] });
+  assert.deepEqual(stub([st("sensor.temperature"), st("calendar.family")]), { entities: ["calendar.family"] });
+  assert.deepEqual(stub([st("sensor.temperature")]), {});
+  assert.deepEqual(stub([]), {});
+  // The discovered list is shared: the stub configuration gets its own copy.
+  const h = makeHass();
+  const conf = wc.WasteCard.getStubConfig(h);
+  conf.entities.push("sensor.x");
+  assert.equal(wc.autoEntities(h).length, 2);
+});
+
 test("an unrelated state change does not rebuild the card", () => {
   const { card } = newCard();
   let renders = 0;

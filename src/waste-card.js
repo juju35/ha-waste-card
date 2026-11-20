@@ -1473,6 +1473,17 @@ const autoEntities = (hass) => {
   // Shared, read-only: callers map it or copy it, so no copy at each state change.
   return AUTO.get(reg);
 };
+// Names of a waste collection entity in the card's languages (entity id or friendly name).
+const WASTE_WORDS =
+  /waste|trash|garbage|rubbish|refuse|recycl|\bbins?\b|poubelle|d[ée]chet|ordure|collecte|m[üu]ll|abfall|afval|vuilnis|basura|residuo|rifiut|spazzatur|odpad|smieci|śmieci|gunoi|affald|skrald|sopor|avfall|hullad|kuka|atkritum|отпад|отпадък|мусор|отход|сміт|відход|σκουπ|απορ/i;
+const stubFallback = (hass) => {
+  const states = Object.values(hass?.states || {});
+  const looks = (s) => WASTE_WORDS.test(`${s.entity_id} ${s.attributes?.friendly_name || ""}`);
+  const calendars = states.filter((s) => s.entity_id.startsWith("calendar."));
+  const dates = states.filter((s) => s.entity_id.startsWith("sensor.") && ["date", "timestamp"].includes(s.attributes?.device_class));
+  const pick = calendars.find(looks) || dates.find(looks) || calendars[0];
+  return pick ? pick.entity_id : null;
+};
 const isWcs = (hass, id) => hass?.entities?.[id]?.platform === "waste_collection_schedule";
 
 // A CSS color given in the configuration, kept only when it cannot break out of the style attribute.
@@ -2381,7 +2392,11 @@ class WasteCard extends WasteBase {
 
   static getStubConfig(hass) {
     const ids = autoEntities(hass);
-    return ids.length ? { entities: [...ids] } : {};
+    if (ids.length) return { entities: [...ids] };
+    // Without Waste Collection Schedule: a calendar or a date sensor that looks like waste collection, else the first
+    // calendar, so that the card picker shows a working card rather than "no entities".
+    const fallback = stubFallback(hass);
+    return fallback ? { entities: [fallback] } : {};
   }
 
   getCardSize() {
