@@ -1,6 +1,7 @@
 // Evaluates src/waste-card.js (a classic script, bundled as is by scripts/build.mjs) in a sandbox with minimal DOM
 // stand-ins and a clock stopped at `now` (UTC), and returns the names the tests need. No dependency, no browser.
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 import { NOW } from "../scripts/mock-states.mjs";
 
@@ -96,5 +97,6 @@ export const load = (now = NOW) => {
        WasteCardEditor: customElements.get("waste-card-editor"), WasteMiniCardEditor: customElements.get("waste-mini-card-editor"),
        window, document, setNow, fireDocument })`,
     sandbox,
+    { filename: fileURLToPath(new URL("../src/waste-card.js", import.meta.url)) },
   );
 };
