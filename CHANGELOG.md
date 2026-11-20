@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.2 - 2026-11-20
+
+### Fixes
+- The frosted expand / collapse button of the illustrated header keeps its blur on Safari before 18 (WebKit prefix).
+- Without Waste Collection Schedule, the card picker offers a working card: a calendar or a date sensor that looks like waste collection (by its id or name, in the card's languages), else the first calendar, instead of the "no entities" warning.
+- The discovered entities are no longer copied at each state change (shared read-only list).
+
+### Maintenance
+- Tests: the coverage of the card source is now measured (`node --test --experimental-test-coverage`).
+- README: the `entity` shorthand option is documented.
+
 ## 1.2.1 - 2026-11-18
 
 ### Fixes
