@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.2 - 2026-11-20
+
+### Fixes
+- The frosted expand / collapse button of the illustrated header keeps its blur on Safari before 18 (WebKit prefix).
+
+### Maintenance
+- Tests: the coverage of the card source is now measured (`node --test --experimental-test-coverage`).
+- README: the `entity` shorthand option is documented.
+
 ## 1.2.1 - 2026-11-18
 
 ### Fixes
