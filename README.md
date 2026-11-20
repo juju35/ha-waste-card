@@ -170,6 +170,7 @@ language: en
 | Option | Card | Default | Description |
 |---|---|---|---|
 | `entities` | both | Waste Collection Schedule entities | Sources of the collections: entity ids, or objects with `entity` and optional `name` (collection type of a date sensor or of every event of a calendar), `type` (waste category, see below), `icon` and `color` |
+| `entity` | both | — | A single source entity, as a shorthand for `entities: [<entity>]`; ignored when `entities` is set. YAML only |
 | `title` | both | *Waste collection* (translated) | Card title |
 | `show_title` | both | `true` | Show the title in the header (e.g. `false` under a section heading of your own) |
 | `show_subtitle` | both | `true` | Show the subtitle (next collection day) under the title |
