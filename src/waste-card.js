@@ -2743,7 +2743,7 @@ for (const card of [
   { type: "waste-mini-card", name: "Waste Mini Card", description: "Next waste collection only, with a countdown and the bin to put out tonight." },
 ]) {
   if (!window.customCards.some((c) => c.type === card.type))
-    window.customCards.push({ ...card, preview: true, documentationURL: "https://github.com/juju35/ha-waste-card" });
+    window.customCards.push({ ...card, preview: false, documentationURL: "https://github.com/juju35/ha-waste-card" });
 }
 
 console.info(`%c WASTE-CARD %c v${VERSION} `, "color: white; background: #43a047; font-weight: 700;", "color: #43a047; background: white; font-weight: 700;");
