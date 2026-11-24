@@ -4,11 +4,10 @@
 // 190 px). Nothing below the top of the banner's road strip or out of the banner. The mini card's expand / collapse
 // button is a 24 px round button 5 px from the top right corner of the banner.
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { entities, NOW, states } from "../scripts/mock-states.mjs";
+import { source } from "./source.mjs";
 
-const source = readFileSync(new URL("../src/waste-card.js", import.meta.url), "utf8");
 
 let chromium;
 try {

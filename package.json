@@ -1,6 +1,6 @@
 {
   "name": "ha-waste-card",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Lovelace cards for Home Assistant showing the next waste collections per bin type, from Waste Collection Schedule sensors, calendars or date sensors.",
   "private": true,
   "type": "module",
