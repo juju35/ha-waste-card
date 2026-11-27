@@ -5,7 +5,7 @@ import { SCENE_STYLE } from "./picture.js";
 
 export const BASE_STYLE = `
   :host { --wc-accent: #43a047; --wc-ok: var(--success-color, #43a047); --wc-warn: var(--warning-color, #ffa600);
-          --wc-crit: var(--error-color, #db4437); --wc-idle: var(--disabled-text-color, #9e9e9e); --wc-active: var(--info-color, #039be5); }
+          --wc-crit: var(--error-color, #db4437); --wc-idle: var(--secondary-text-color, #9e9e9e); --wc-active: var(--info-color, #039be5); }
   /* Container queries follow the width the card is given (Sections view columns, mini card). */
   ha-card { overflow: hidden; container-type: inline-size; }
   /* A size container has no width of its own content: this empty, zero-height grid gives the card a natural width of
